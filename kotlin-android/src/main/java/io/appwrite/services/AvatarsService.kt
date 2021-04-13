@@ -1,13 +1,10 @@
 package io.appwrite.services
 
-import android.net.Uri
 import io.appwrite.AppwriteClient
 import io.appwrite.enums.OrderType
-import io.appwrite.exceptions.AppwriteException
-import okhttp3.Cookie
+import io.appwrite.exceptions.AppwriteException;
 import okhttp3.Response
 import okhttp3.HttpUrl
-import okhttp3.HttpUrl.Companion.toHttpUrl
 import java.io.File
 
 class AvatarsService(private val client: AppwriteClient) : BaseService(client) {
@@ -26,14 +23,13 @@ class AvatarsService(private val client: AppwriteClient) : BaseService(client) {
      * @param quality
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getBrowser(
 		code: String,
 		width: Int = 100,
 		height: Int = 100,
 		quality: Int = 100
-	): Response {
+	): String {
         val path = "/avatars/browsers/{code}".replace("{code}", code)
         val params = mapOf<String, Any?>(
             "width" to width,
@@ -43,7 +39,6 @@ class AvatarsService(private val client: AppwriteClient) : BaseService(client) {
             "key" to client.config["key"]
         )
 
-
         val httpBuilder = HttpUrl.Builder().build().newBuilder(client.endPoint + path)
             ?: throw AppwriteException("Badly formed url!")
 
@@ -51,7 +46,7 @@ class AvatarsService(private val client: AppwriteClient) : BaseService(client) {
             httpBuilder.addQueryParameter(it.key, it.value.toString())
         }
 
-        return client.call("GET", path, params = params)
+        return httpBuilder.build().toString()
     }
     
     /**
@@ -67,14 +62,13 @@ class AvatarsService(private val client: AppwriteClient) : BaseService(client) {
      * @param quality
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getCreditCard(
 		code: String,
 		width: Int = 100,
 		height: Int = 100,
 		quality: Int = 100
-	): Response {
+	): String {
         val path = "/avatars/credit-cards/{code}".replace("{code}", code)
         val params = mapOf<String, Any?>(
             "width" to width,
@@ -84,7 +78,6 @@ class AvatarsService(private val client: AppwriteClient) : BaseService(client) {
             "key" to client.config["key"]
         )
 
-
         val httpBuilder = HttpUrl.Builder().build().newBuilder(client.endPoint + path)
             ?: throw AppwriteException("Badly formed url!")
 
@@ -92,7 +85,7 @@ class AvatarsService(private val client: AppwriteClient) : BaseService(client) {
             httpBuilder.addQueryParameter(it.key, it.value.toString())
         }
 
-        return client.call("GET", path, params = params)
+        return httpBuilder.build().toString()
     }
     
     /**
@@ -105,18 +98,16 @@ class AvatarsService(private val client: AppwriteClient) : BaseService(client) {
      * @param url
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getFavicon(
 		url: String
-	): Response {
+	): String {
         val path = "/avatars/favicon"
         val params = mapOf<String, Any?>(
             "url" to url,
             "project" to client.config["project"],
             "key" to client.config["key"]
         )
-
 
         val httpBuilder = HttpUrl.Builder().build().newBuilder(client.endPoint + path)
             ?: throw AppwriteException("Badly formed url!")
@@ -125,7 +116,7 @@ class AvatarsService(private val client: AppwriteClient) : BaseService(client) {
             httpBuilder.addQueryParameter(it.key, it.value.toString())
         }
 
-        return client.call("GET", path, params = params)
+        return httpBuilder.build().toString()
     }
     
     /**
@@ -141,14 +132,13 @@ class AvatarsService(private val client: AppwriteClient) : BaseService(client) {
      * @param quality
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getFlag(
 		code: String,
 		width: Int = 100,
 		height: Int = 100,
 		quality: Int = 100
-	): Response {
+	): String {
         val path = "/avatars/flags/{code}".replace("{code}", code)
         val params = mapOf<String, Any?>(
             "width" to width,
@@ -158,7 +148,6 @@ class AvatarsService(private val client: AppwriteClient) : BaseService(client) {
             "key" to client.config["key"]
         )
 
-
         val httpBuilder = HttpUrl.Builder().build().newBuilder(client.endPoint + path)
             ?: throw AppwriteException("Badly formed url!")
 
@@ -166,7 +155,7 @@ class AvatarsService(private val client: AppwriteClient) : BaseService(client) {
             httpBuilder.addQueryParameter(it.key, it.value.toString())
         }
 
-        return client.call("GET", path, params = params)
+        return httpBuilder.build().toString()
     }
     
     /**
@@ -182,13 +171,12 @@ class AvatarsService(private val client: AppwriteClient) : BaseService(client) {
      * @param height
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getImage(
 		url: String,
 		width: Int = 400,
 		height: Int = 400
-	): Response {
+	): String {
         val path = "/avatars/image"
         val params = mapOf<String, Any?>(
             "url" to url,
@@ -198,7 +186,6 @@ class AvatarsService(private val client: AppwriteClient) : BaseService(client) {
             "key" to client.config["key"]
         )
 
-
         val httpBuilder = HttpUrl.Builder().build().newBuilder(client.endPoint + path)
             ?: throw AppwriteException("Badly formed url!")
 
@@ -206,7 +193,7 @@ class AvatarsService(private val client: AppwriteClient) : BaseService(client) {
             httpBuilder.addQueryParameter(it.key, it.value.toString())
         }
 
-        return client.call("GET", path, params = params)
+        return httpBuilder.build().toString()
     }
     
     /**
@@ -230,7 +217,6 @@ class AvatarsService(private val client: AppwriteClient) : BaseService(client) {
      * @param background
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getInitials(
 		name: String = "",
@@ -238,7 +224,7 @@ class AvatarsService(private val client: AppwriteClient) : BaseService(client) {
 		height: Int = 500,
 		color: String = "",
 		background: String = ""
-	): Response {
+	): String {
         val path = "/avatars/initials"
         val params = mapOf<String, Any?>(
             "name" to name,
@@ -250,7 +236,6 @@ class AvatarsService(private val client: AppwriteClient) : BaseService(client) {
             "key" to client.config["key"]
         )
 
-
         val httpBuilder = HttpUrl.Builder().build().newBuilder(client.endPoint + path)
             ?: throw AppwriteException("Badly formed url!")
 
@@ -258,7 +243,7 @@ class AvatarsService(private val client: AppwriteClient) : BaseService(client) {
             httpBuilder.addQueryParameter(it.key, it.value.toString())
         }
 
-        return client.call("GET", path, params = params)
+        return httpBuilder.build().toString()
     }
     
     /**
@@ -273,14 +258,13 @@ class AvatarsService(private val client: AppwriteClient) : BaseService(client) {
      * @param download
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getQR(
 		text: String,
 		size: Int = 400,
 		margin: Int = 1,
 		download: Boolean = false
-	): Response {
+	): String {
         val path = "/avatars/qr"
         val params = mapOf<String, Any?>(
             "text" to text,
@@ -291,7 +275,6 @@ class AvatarsService(private val client: AppwriteClient) : BaseService(client) {
             "key" to client.config["key"]
         )
 
-
         val httpBuilder = HttpUrl.Builder().build().newBuilder(client.endPoint + path)
             ?: throw AppwriteException("Badly formed url!")
 
@@ -299,7 +282,7 @@ class AvatarsService(private val client: AppwriteClient) : BaseService(client) {
             httpBuilder.addQueryParameter(it.key, it.value.toString())
         }
 
-        return client.call("GET", path, params = params)
+        return httpBuilder.build().toString()
     }
     
 }

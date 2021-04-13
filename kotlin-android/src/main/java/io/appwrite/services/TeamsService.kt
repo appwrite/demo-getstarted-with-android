@@ -1,10 +1,8 @@
 package io.appwrite.services
 
-import android.net.Uri
 import io.appwrite.AppwriteClient
 import io.appwrite.enums.OrderType
-import io.appwrite.exceptions.AppwriteException
-import okhttp3.Cookie
+import io.appwrite.exceptions.AppwriteException;
 import okhttp3.Response
 import java.io.File
 
@@ -24,7 +22,6 @@ class TeamsService(private val client: AppwriteClient) : BaseService(client) {
      * @param orderType
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun list(
 		search: String = "",
@@ -39,7 +36,6 @@ class TeamsService(private val client: AppwriteClient) : BaseService(client) {
             "offset" to offset,
             "orderType" to orderType.name
         )
-
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -58,7 +54,6 @@ class TeamsService(private val client: AppwriteClient) : BaseService(client) {
      * @param roles
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun create(
 		name: String,
@@ -69,7 +64,6 @@ class TeamsService(private val client: AppwriteClient) : BaseService(client) {
             "name" to name,
             "roles" to roles
         )
-
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -85,7 +79,6 @@ class TeamsService(private val client: AppwriteClient) : BaseService(client) {
      * @param teamId
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun get(
 		teamId: String
@@ -93,7 +86,6 @@ class TeamsService(private val client: AppwriteClient) : BaseService(client) {
         val path = "/teams/{teamId}".replace("{teamId}", teamId)
         val params = mapOf<String, Any?>(
         )
-
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -110,7 +102,6 @@ class TeamsService(private val client: AppwriteClient) : BaseService(client) {
      * @param name
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun update(
 		teamId: String,
@@ -120,7 +111,6 @@ class TeamsService(private val client: AppwriteClient) : BaseService(client) {
         val params = mapOf<String, Any?>(
             "name" to name
         )
-
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -136,7 +126,6 @@ class TeamsService(private val client: AppwriteClient) : BaseService(client) {
      * @param teamId
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun delete(
 		teamId: String
@@ -144,7 +133,6 @@ class TeamsService(private val client: AppwriteClient) : BaseService(client) {
         val path = "/teams/{teamId}".replace("{teamId}", teamId)
         val params = mapOf<String, Any?>(
         )
-
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -164,7 +152,6 @@ class TeamsService(private val client: AppwriteClient) : BaseService(client) {
      * @param orderType
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getMemberships(
 		teamId: String,
@@ -180,7 +167,6 @@ class TeamsService(private val client: AppwriteClient) : BaseService(client) {
             "offset" to offset,
             "orderType" to orderType.name
         )
-
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -211,7 +197,6 @@ class TeamsService(private val client: AppwriteClient) : BaseService(client) {
      * @param name
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun createMembership(
 		teamId: String,
@@ -227,7 +212,6 @@ class TeamsService(private val client: AppwriteClient) : BaseService(client) {
             "roles" to roles,
             "url" to url
         )
-
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -245,7 +229,6 @@ class TeamsService(private val client: AppwriteClient) : BaseService(client) {
      * @param inviteId
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun deleteMembership(
 		teamId: String,
@@ -254,7 +237,6 @@ class TeamsService(private val client: AppwriteClient) : BaseService(client) {
         val path = "/teams/{teamId}/memberships/{inviteId}".replace("{teamId}", teamId).replace("{inviteId}", inviteId)
         val params = mapOf<String, Any?>(
         )
-
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -274,7 +256,6 @@ class TeamsService(private val client: AppwriteClient) : BaseService(client) {
      * @param secret
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun updateMembershipStatus(
 		teamId: String,
@@ -287,7 +268,6 @@ class TeamsService(private val client: AppwriteClient) : BaseService(client) {
             "userId" to userId,
             "secret" to secret
         )
-
         val headers = mapOf(
 			"content-type" to "application/json"
         )

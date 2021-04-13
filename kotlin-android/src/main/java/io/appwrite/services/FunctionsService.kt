@@ -1,10 +1,8 @@
 package io.appwrite.services
 
-import android.net.Uri
 import io.appwrite.AppwriteClient
 import io.appwrite.enums.OrderType
-import io.appwrite.exceptions.AppwriteException
-import okhttp3.Cookie
+import io.appwrite.exceptions.AppwriteException;
 import okhttp3.Response
 import java.io.File
 
@@ -22,7 +20,6 @@ class FunctionsService(private val client: AppwriteClient) : BaseService(client)
      * @param orderType
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun list(
 		search: String = "",
@@ -37,7 +34,6 @@ class FunctionsService(private val client: AppwriteClient) : BaseService(client)
             "offset" to offset,
             "orderType" to orderType.name
         )
-
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -60,7 +56,6 @@ class FunctionsService(private val client: AppwriteClient) : BaseService(client)
      * @param timeout
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun create(
 		name: String,
@@ -81,7 +76,6 @@ class FunctionsService(private val client: AppwriteClient) : BaseService(client)
             "schedule" to schedule,
             "timeout" to timeout
         )
-
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -96,7 +90,6 @@ class FunctionsService(private val client: AppwriteClient) : BaseService(client)
      * @param functionId
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun get(
 		functionId: String
@@ -104,7 +97,6 @@ class FunctionsService(private val client: AppwriteClient) : BaseService(client)
         val path = "/functions/{functionId}".replace("{functionId}", functionId)
         val params = mapOf<String, Any?>(
         )
-
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -125,7 +117,6 @@ class FunctionsService(private val client: AppwriteClient) : BaseService(client)
      * @param timeout
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun update(
 		functionId: String,
@@ -145,7 +136,6 @@ class FunctionsService(private val client: AppwriteClient) : BaseService(client)
             "schedule" to schedule,
             "timeout" to timeout
         )
-
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -160,7 +150,6 @@ class FunctionsService(private val client: AppwriteClient) : BaseService(client)
      * @param functionId
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun delete(
 		functionId: String
@@ -168,7 +157,6 @@ class FunctionsService(private val client: AppwriteClient) : BaseService(client)
         val path = "/functions/{functionId}".replace("{functionId}", functionId)
         val params = mapOf<String, Any?>(
         )
-
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -190,7 +178,6 @@ class FunctionsService(private val client: AppwriteClient) : BaseService(client)
      * @param orderType
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun listExecutions(
 		functionId: String,
@@ -206,7 +193,6 @@ class FunctionsService(private val client: AppwriteClient) : BaseService(client)
             "offset" to offset,
             "orderType" to orderType.name
         )
-
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -224,7 +210,6 @@ class FunctionsService(private val client: AppwriteClient) : BaseService(client)
      * @param functionId
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun createExecution(
 		functionId: String
@@ -232,7 +217,6 @@ class FunctionsService(private val client: AppwriteClient) : BaseService(client)
         val path = "/functions/{functionId}/executions".replace("{functionId}", functionId)
         val params = mapOf<String, Any?>(
         )
-
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -248,7 +232,6 @@ class FunctionsService(private val client: AppwriteClient) : BaseService(client)
      * @param executionId
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getExecution(
 		functionId: String,
@@ -257,7 +240,6 @@ class FunctionsService(private val client: AppwriteClient) : BaseService(client)
         val path = "/functions/{functionId}/executions/{executionId}".replace("{functionId}", functionId).replace("{executionId}", executionId)
         val params = mapOf<String, Any?>(
         )
-
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -275,7 +257,6 @@ class FunctionsService(private val client: AppwriteClient) : BaseService(client)
      * @param tag
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun updateTag(
 		functionId: String,
@@ -285,7 +266,6 @@ class FunctionsService(private val client: AppwriteClient) : BaseService(client)
         val params = mapOf<String, Any?>(
             "tag" to tag
         )
-
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -305,7 +285,6 @@ class FunctionsService(private val client: AppwriteClient) : BaseService(client)
      * @param orderType
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun listTags(
 		functionId: String,
@@ -321,7 +300,6 @@ class FunctionsService(private val client: AppwriteClient) : BaseService(client)
             "offset" to offset,
             "orderType" to orderType.name
         )
-
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -347,7 +325,6 @@ class FunctionsService(private val client: AppwriteClient) : BaseService(client)
      * @param code
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun createTag(
 		functionId: String,
@@ -359,7 +336,6 @@ class FunctionsService(private val client: AppwriteClient) : BaseService(client)
             "command" to command,
             "code" to code
         )
-
         val headers = mapOf(
 			"content-type" to "multipart/form-data"
         )
@@ -375,7 +351,6 @@ class FunctionsService(private val client: AppwriteClient) : BaseService(client)
      * @param tagId
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getTag(
 		functionId: String,
@@ -384,7 +359,6 @@ class FunctionsService(private val client: AppwriteClient) : BaseService(client)
         val path = "/functions/{functionId}/tags/{tagId}".replace("{functionId}", functionId).replace("{tagId}", tagId)
         val params = mapOf<String, Any?>(
         )
-
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -400,7 +374,6 @@ class FunctionsService(private val client: AppwriteClient) : BaseService(client)
      * @param tagId
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun deleteTag(
 		functionId: String,
@@ -409,7 +382,6 @@ class FunctionsService(private val client: AppwriteClient) : BaseService(client)
         val path = "/functions/{functionId}/tags/{tagId}".replace("{functionId}", functionId).replace("{tagId}", tagId)
         val params = mapOf<String, Any?>(
         )
-
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -423,7 +395,6 @@ class FunctionsService(private val client: AppwriteClient) : BaseService(client)
      * @param range
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getUsage(
 		functionId: String,
@@ -433,7 +404,6 @@ class FunctionsService(private val client: AppwriteClient) : BaseService(client)
         val params = mapOf<String, Any?>(
             "range" to range
         )
-
         val headers = mapOf(
 			"content-type" to "application/json"
         )

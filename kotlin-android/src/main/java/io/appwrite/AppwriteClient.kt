@@ -1,10 +1,7 @@
+
 package io.appwrite
 
-import android.content.Context
-import com.franmontiel.persistentcookiejar.ClearableCookieJar
-import com.franmontiel.persistentcookiejar.PersistentCookieJar
-import com.franmontiel.persistentcookiejar.cache.SetCookieCache
-import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
+import android.annotation.SuppressLint
 import com.google.gson.Gson
 import io.appwrite.exceptions.AppwriteException
 import io.appwrite.extensions.JsonExtensions.fromJson
@@ -17,24 +14,25 @@ import okhttp3.*
 import okhttp3.Headers.Companion.toHeaders
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.create
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.logging.HttpLoggingInterceptor
 import java.io.File
 import java.io.IOException
+import java.net.CookieManager
+import java.net.CookiePolicy
 import java.security.SecureRandom
 import java.security.cert.X509Certificate
-import javax.net.ssl.HostnameVerifier
-import javax.net.ssl.SSLContext
-import javax.net.ssl.SSLSocketFactory
-import javax.net.ssl.TrustManager
-import javax.net.ssl.X509TrustManager
+import javax.net.ssl.*
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
+
 class AppwriteClient(
-    context: Context,
     var endPoint: String = "https://appwrite.io/v1",
     private var selfSigned: Boolean = false
 ) : CoroutineScope {
@@ -47,22 +45,17 @@ class AppwriteClient(
     private lateinit var http: OkHttpClient
 
     private val headers: MutableMap<String, String>
-    
-    val config: MutableMap<String, String>
 
-    val cookieJar: ClearableCookieJar = PersistentCookieJar(
-        SetCookieCache(), 
-        SharedPrefsCookiePersistor(context)
-    )
+    val config: MutableMap<String, String>
 
     init {
         headers = mutableMapOf(
             "content-type" to "application/json",
-            "x-sdk-version" to "appwrite:kotlin:0.0.1",            
+            "x-sdk-version" to "appwrite:kotlin:0.0.1",
             "X-Appwrite-Response-Format" to "0.7.0"
         )
         config = mutableMapOf()
-        
+
         setSelfSigned(selfSigned)
     }
 
@@ -95,9 +88,13 @@ class AppwriteClient(
     fun setSelfSigned(status: Boolean): AppwriteClient {
         selfSigned = status
 
+        val cookieManager = CookieManager().apply {
+            setCookiePolicy(CookiePolicy.ACCEPT_ALL)
+        }
+
         val builder = OkHttpClient()
             .newBuilder()
-            .cookieJar(cookieJar)
+            .cookieJar(JavaNetCookieJar(cookieManager))
             .addInterceptor(HttpLoggingInterceptor().apply { setLevel(HttpLoggingInterceptor.Level.BODY) })
 
         if (!selfSigned) {
@@ -109,8 +106,10 @@ class AppwriteClient(
             // Create a trust manager that does not validate certificate chains
             val trustAllCerts = arrayOf<TrustManager>(
                 object : X509TrustManager {
+                    @SuppressLint("TrustAllX509TrustManager")
                     override fun checkClientTrusted(chain: Array<X509Certificate>, authType: String) {
                     }
+                    @SuppressLint("TrustAllX509TrustManager")
                     override fun checkServerTrusted(chain: Array<X509Certificate>, authType: String) {
                     }
                     override fun getAcceptedIssuers(): Array<X509Certificate> {
@@ -147,10 +146,10 @@ class AppwriteClient(
 
     @Throws(AppwriteException::class)
     suspend fun call(
-        method: String, 
-        path: String, 
-        headers:  Map<String, String> = mapOf(), 
-        params: Map<String, Any?> = mapOf()
+        method: String,
+        path: String,
+        headers:  Map<String, String>,
+        params: Map<String, Any?>
     ): Response {
         val requestHeaders = this.headers.toHeaders().newBuilder()
             .addAll(headers.toHeaders())
@@ -183,7 +182,6 @@ class AppwriteClient(
 
         val body = if (MultipartBody.FORM.toString() == headers["content-type"]) {
             val builder = MultipartBody.Builder().setType(MultipartBody.FORM)
-
             params.forEach {
                 when {
                     it.key == "file" -> {
@@ -194,7 +192,7 @@ class AppwriteClient(
                         val list = it.value as List<*>
                         for (index in list.indices) {
                             builder.addFormDataPart(
-                                "${it.key}[${index}]",
+                                "${it.key}[]",
                                 list[index].toString()
                             )
                         }
@@ -230,14 +228,13 @@ class AppwriteClient(
             }
 
             override fun onResponse(call: Call, response: Response) {
-                response.use { res ->
-                    if (res.code >= 400) {
-                        val err = response.body?.string()?.fromJson(Error::class.java)
-                        throw AppwriteException("${err?.code}: ${err?.message}")
-                    }
-                    it.resume(res)
+                if (response.code >= 400) {
+                    val err = response.body?.string()?.fromJson(Error::class.java)
+                    throw AppwriteException("${err?.code}: ${err?.message}")
                 }
+                it.resume(response)
             }
         })
     }
 }
+

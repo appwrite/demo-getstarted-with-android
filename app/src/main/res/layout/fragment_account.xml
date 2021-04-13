@@ -70,25 +70,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
 
-            <Button
-                android:id="@+id/getDataButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Get data"
-                app:layout_constraintEnd_toEndOf="@+id/loginButton"
-                app:layout_constraintStart_toStartOf="@+id/loginButton"
-                app:layout_constraintTop_toBottomOf="@+id/loginButton" />
-
-            <Button
-                android:id="@+id/createTodoButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Create Todo"
-                app:layout_constraintEnd_toEndOf="@+id/getDataButton"
-                app:layout_constraintStart_toStartOf="@+id/getDataButton"
-                app:layout_constraintTop_toBottomOf="@+id/getDataButton" />
 
             <Button
                 android:id="@+id/getFileButton"
@@ -96,9 +77,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Get File"
-                app:layout_constraintEnd_toEndOf="@+id/createTodoButton"
-                app:layout_constraintStart_toStartOf="@+id/createTodoButton"
-                app:layout_constraintTop_toBottomOf="@+id/createTodoButton" />
+                app:layout_constraintEnd_toEndOf="@+id/loginButton"
+                app:layout_constraintStart_toStartOf="@+id/loginButton"
+                app:layout_constraintTop_toBottomOf="@+id/loginButton" />
 
         <Button
             android:id="@+id/downloadFileButton"

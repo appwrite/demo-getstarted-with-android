@@ -22,7 +22,7 @@ class AccountsFragment : Fragment() {
     private lateinit var binding: FragmentAccountBinding
     private lateinit var viewModel: AccountsViewModel
     val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
-        viewModel.uploadFile(uri, context )
+        viewModel.uploadFile(uri, requireContext())
     }
 
     val requestPermissions = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
@@ -48,12 +48,7 @@ class AccountsFragment : Fragment() {
         binding.loginButton.setOnClickListener{
             viewModel.onLogin()
         }
-        binding.getDataButton.setOnClickListener{
-            viewModel.getData()
-        }
-        binding.createTodoButton.setOnClickListener{
-            viewModel.postData()
-        }
+
         binding.getFileButton.setOnClickListener{
             viewModel.getFileById()
         }

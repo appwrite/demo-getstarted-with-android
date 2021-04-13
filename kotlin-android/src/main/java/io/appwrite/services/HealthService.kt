@@ -1,10 +1,8 @@
 package io.appwrite.services
 
-import android.net.Uri
 import io.appwrite.AppwriteClient
 import io.appwrite.enums.OrderType
-import io.appwrite.exceptions.AppwriteException
-import okhttp3.Cookie
+import io.appwrite.exceptions.AppwriteException;
 import okhttp3.Response
 import java.io.File
 
@@ -17,13 +15,11 @@ class HealthService(private val client: AppwriteClient) : BaseService(client) {
      *
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun get(): Response {
         val path = "/health"
         val params = mapOf<String, Any?>(
         )
-
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -37,13 +33,11 @@ class HealthService(private val client: AppwriteClient) : BaseService(client) {
      *
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getAntiVirus(): Response {
         val path = "/health/anti-virus"
         val params = mapOf<String, Any?>(
         )
-
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -58,13 +52,11 @@ class HealthService(private val client: AppwriteClient) : BaseService(client) {
      *
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getCache(): Response {
         val path = "/health/cache"
         val params = mapOf<String, Any?>(
         )
-
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -78,13 +70,11 @@ class HealthService(private val client: AppwriteClient) : BaseService(client) {
      *
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getDB(): Response {
         val path = "/health/db"
         val params = mapOf<String, Any?>(
         )
-
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -100,13 +90,11 @@ class HealthService(private val client: AppwriteClient) : BaseService(client) {
      *
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getQueueCertificates(): Response {
         val path = "/health/queue/certificates"
         val params = mapOf<String, Any?>(
         )
-
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -118,13 +106,11 @@ class HealthService(private val client: AppwriteClient) : BaseService(client) {
      *
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getQueueFunctions(): Response {
         val path = "/health/queue/functions"
         val params = mapOf<String, Any?>(
         )
-
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -139,13 +125,11 @@ class HealthService(private val client: AppwriteClient) : BaseService(client) {
      *
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getQueueLogs(): Response {
         val path = "/health/queue/logs"
         val params = mapOf<String, Any?>(
         )
-
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -160,13 +144,11 @@ class HealthService(private val client: AppwriteClient) : BaseService(client) {
      *
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getQueueTasks(): Response {
         val path = "/health/queue/tasks"
         val params = mapOf<String, Any?>(
         )
-
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -181,13 +163,11 @@ class HealthService(private val client: AppwriteClient) : BaseService(client) {
      *
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getQueueUsage(): Response {
         val path = "/health/queue/usage"
         val params = mapOf<String, Any?>(
         )
-
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -202,13 +182,11 @@ class HealthService(private val client: AppwriteClient) : BaseService(client) {
      *
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getQueueWebhooks(): Response {
         val path = "/health/queue/webhooks"
         val params = mapOf<String, Any?>(
         )
-
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -222,13 +200,11 @@ class HealthService(private val client: AppwriteClient) : BaseService(client) {
      *
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getStorageLocal(): Response {
         val path = "/health/storage/local"
         val params = mapOf<String, Any?>(
         )
-
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -248,13 +224,11 @@ class HealthService(private val client: AppwriteClient) : BaseService(client) {
      *
      * @return The request response with a JSON body 
      */
-    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getTime(): Response {
         val path = "/health/time"
         val params = mapOf<String, Any?>(
         )
-
         val headers = mapOf(
 			"content-type" to "application/json"
         )

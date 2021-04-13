@@ -1,0 +1,2 @@
+io/appwrite/appwrite/BuildConfig.java
+ io.appwrite.appwrite.BuildConfig

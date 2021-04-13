@@ -29,7 +29,13 @@ class DatabaseFragment : Fragment() {
             container,
             false
         )
-        Log.i("Gallery Fragment", "Called ViewModelProvider.get")
+        binding.getDataButton.setOnClickListener{
+            viewModel.getData()
+        }
+        binding.createTodoButton.setOnClickListener{
+            viewModel.postData()
+        }
+        Log.i("Database Fragment", "Called ViewModelProvider.get")
         viewModel = ViewModelProvider(this).get(DatabaseViewModel::class.java)
         return binding.root
     }
