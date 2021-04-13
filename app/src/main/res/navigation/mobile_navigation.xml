@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_account">
+
+    <fragment
+        android:id="@+id/nav_account"
+        android:name="com.example.appwritedemoapplication.ui.Accounts.AccountsFragment"
+        android:label="@string/menu_accounts"
+        tools:layout="@layout/fragment_account" />
+
+    <fragment
+        android:id="@+id/nav_teams"
+        android:name="com.example.appwritedemoapplication.ui.Teams.TeamsFragment"
+        android:label="@string/menu_teams"
+        tools:layout="@layout/fragment_teams" />
+
+    <fragment
+        android:id="@+id/nav_database"
+        android:name="com.example.appwritedemoapplication.ui.Database.DatabaseFragment"
+        android:label="@string/menu_database"
+        tools:layout="@layout/fragment_database" />
+
+    <fragment
+        android:id="@+id/nav_storage"
+        android:name="com.example.appwritedemoapplication.ui.Storage.StorageFragment"
+        android:label="@string/menu_storage"
+        tools:layout="@layout/fragment_storage" />
+
+    <fragment
+        android:id="@+id/nav_functions"
+        android:name="com.example.appwritedemoapplication.ui.Functions.FunctionsFragment"
+        android:label="@string/menu_functions"
+        tools:layout="@layout/fragment_functions" />
+
+    <fragment
+        android:id="@+id/nav_localization"
+        android:name="com.example.appwritedemoapplication.ui.Localization.LocalizationFragment"
+        android:label="@string/menu_localization"
+        tools:layout="@layout/fragment_localization" />
+
+    <fragment
+        android:id="@+id/nav_avatars"
+        android:name="com.example.appwritedemoapplication.ui.Avatars.AvatarsFragment"
+        android:label="@string/menu_avatars"
+        tools:layout="@layout/fragment_avatars" />
+</navigation>
