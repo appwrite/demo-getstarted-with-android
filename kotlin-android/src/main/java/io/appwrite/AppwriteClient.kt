@@ -230,7 +230,7 @@ class AppwriteClient(
             override fun onResponse(call: Call, response: Response) {
                 if (response.code >= 400) {
                     val err = response.body?.string()?.fromJson(Error::class.java)
-                    throw AppwriteException("${err?.code}: ${err?.message}")
+                    it.cancel(AppwriteException(err?.message, err?.code, response.toString()))
                 }
                 it.resume(response)
             }

@@ -6,28 +6,110 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraint_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/signupTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Signup"
+                android:textSize="32sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/signupEmailTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Email"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="@id/signupTV"
+                app:layout_constraintTop_toBottomOf="@id/signupTV" />
+
+            <EditText
+                android:id="@+id/signupEmailEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="@id/signupEmailTV"
+                app:layout_constraintTop_toBottomOf="@id/signupEmailTV"
+                tools:layout_editor_absoluteX="0dp">
+
+            </EditText>
+
+            <TextView
+                android:id="@+id/signupPasswordTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Password"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="@id/signupEmailEditText"
+                app:layout_constraintTop_toBottomOf="@+id/signupEmailEditText" />
+
+            <EditText
+                android:id="@+id/signupPasswordEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:inputType="textPassword"
+                app:layout_constraintStart_toStartOf="@id/signupPasswordTV"
+                app:layout_constraintTop_toBottomOf="@id/signupPasswordTV" />
+
+            <TextView
+                android:id="@+id/signupNameTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Name"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="@id/signupPasswordEditText"
+                app:layout_constraintTop_toBottomOf="@+id/signupPasswordEditText" />
+
+            <EditText
+                android:id="@+id/signupNameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="@id/signupNameTV"
+                app:layout_constraintTop_toBottomOf="@id/signupNameTV" />
+
+            <Button
+                android:id="@+id/signupButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Signup"
+                app:layout_constraintEnd_toEndOf="@id/signupNameEditText"
+                app:layout_constraintStart_toStartOf="@id/signupNameEditText"
+                app:layout_constraintTop_toBottomOf="@+id/signupNameEditText" />
+
+
+            <!--    Login -->
             <TextView
                 android:id="@+id/loginTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
                 android:text="Login"
                 android:textSize="32sp"
-                android:layout_marginTop="24dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/signupButton" />
 
             <TextView
                 android:id="@+id/emailTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:text="Email"
                 android:textSize="20sp"
-                android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/loginTV" />
 
@@ -45,9 +127,9 @@
                 android:id="@+id/passwordTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:text="Password"
                 android:textSize="20sp"
-                android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/emailEditText" />
 
@@ -55,8 +137,8 @@
                 android:id="@+id/passwordEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
                 android:layout_marginTop="16dp"
+                android:inputType="textPassword"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/passwordTV" />
 
@@ -64,54 +146,13 @@
                 android:id="@+id/loginButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Login"
                 android:layout_marginTop="16dp"
+                android:text="Login"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
 
-
-            <Button
-                android:id="@+id/getFileButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Get File"
-                app:layout_constraintEnd_toEndOf="@+id/loginButton"
-                app:layout_constraintStart_toStartOf="@+id/loginButton"
-                app:layout_constraintTop_toBottomOf="@+id/loginButton" />
-
-        <Button
-            android:id="@+id/downloadFileButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Download File"
-            app:layout_constraintEnd_toEndOf="@+id/getFileButton"
-            app:layout_constraintStart_toStartOf="@+id/getFileButton"
-            app:layout_constraintTop_toBottomOf="@+id/getFileButton" />
-
-
-        <Button
-            android:id="@+id/uploadFileButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Upload File"
-            app:layout_constraintEnd_toEndOf="@id/downloadFileButton"
-            app:layout_constraintStart_toStartOf="@id/downloadFileButton"
-            app:layout_constraintTop_toBottomOf="@id/downloadFileButton" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/filePathTextView"
-            android:text="No File Chosen"
-            app:layout_constraintEnd_toEndOf="@id/uploadFileButton"
-            app:layout_constraintStart_toStartOf="@id/uploadFileButton"
-            app:layout_constraintTop_toBottomOf="@id/uploadFileButton"></TextView>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
 </layout>

@@ -6,6 +6,7 @@ import io.appwrite.exceptions.AppwriteException;
 import okhttp3.Response
 import okhttp3.HttpUrl
 import java.io.File
+import java.lang.Exception
 
 class AccountService(private val client: AppwriteClient) : BaseService(client) {
 
