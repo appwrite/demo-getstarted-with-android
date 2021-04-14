@@ -32,11 +32,21 @@ class DatabaseFragment : Fragment() {
             container,
             false
         )
-        binding.getDataButton.setOnClickListener{
-            viewModel.getData()
+
+        binding.createDocument.setOnClickListener{
+            viewModel.createDocument(binding.content.text, binding.isComplete.isSelected)
         }
-        binding.createTodoButton.setOnClickListener{
-            viewModel.postData()
+
+        binding.getDocument.setOnClickListener{
+            viewModel.getDocument(binding.documentId.text)
+        }
+
+        binding.getDocuments.setOnClickListener{
+            viewModel.getDocuments()
+        }
+
+        binding.deleteDocument.setOnClickListener{
+            viewModel.deleteDocument(binding.documentId.text)
         }
 
         viewModel = ViewModelProvider(this).get(DatabaseViewModel::class.java)
@@ -48,7 +58,7 @@ class DatabaseFragment : Fragment() {
 
         viewModel.response.observe(viewLifecycleOwner, Observer { event ->
             event?.getContentIfNotHandled()?.let {
-                Snackbar.make(binding.root, it, Snackbar.LENGTH_LONG).show()
+                binding.responseTV.text = it
             }
         })
 

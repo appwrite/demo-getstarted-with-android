@@ -1,34 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/constraint_layout"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp"
-        tools:context=".ui.Database.DatabaseFragment">
+        android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/getDataButton"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Get data"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:padding="16dp">
 
-        <Button
-            android:id="@+id/createTodoButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Create Todo"
-            app:layout_constraintEnd_toEndOf="@+id/getDataButton"
-            app:layout_constraintStart_toStartOf="@+id/getDataButton"
-            app:layout_constraintTop_toBottomOf="@+id/getDataButton" />
+            <TextView
+                android:id="@+id/responseTV"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:fadeScrollbars="false"
+                android:scrollbars="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
+            <EditText
+                android:id="@+id/content"
+                android:layout_width="291dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="Add Todo"
+                app:layout_constraintEnd_toStartOf="@+id/isComplete"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/responseTV" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <RadioButton
+                android:id="@+id/isComplete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Complete?"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/content"
+                app:layout_constraintTop_toTopOf="@id/content" />
+
+            <Button
+                android:id="@+id/createDocument"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Create Document"
+                app:layout_constraintEnd_toStartOf="@+id/getDocuments"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/content" />
+
+            <Button
+                android:id="@+id/getDocuments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Get Documents"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/createDocument"
+                app:layout_constraintTop_toTopOf="@id/createDocument" />
+
+            <EditText
+                android:id="@+id/documentId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Document Id"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/createDocument" />
+
+            <Button
+                android:id="@+id/getDocument"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Get Document"
+                app:layout_constraintEnd_toStartOf="@+id/deleteDocument"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/documentId" />
+
+            <Button
+                android:id="@+id/deleteDocument"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delete Document"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@id/getDocument"
+                app:layout_constraintTop_toTopOf="@id/getDocument" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>
