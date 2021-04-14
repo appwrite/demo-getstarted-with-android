@@ -24,7 +24,7 @@
             android:layout_marginTop="16dp"
             android:text="Download File"
             app:layout_constraintEnd_toEndOf="@id/getFileButton"
-            app:layout_constraintTop_toTopOf="@id/getFileButton"
+            app:layout_constraintTop_toBottomOf="@id/getFileButton"
             app:layout_constraintStart_toStartOf="@id/getFileButton" />
 
         <Button
@@ -33,9 +33,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Upload File"
-            app:layout_constraintEnd_toEndOf="@+id/getFileButton"
-            app:layout_constraintStart_toStartOf="@+id/getFileButton"
-            app:layout_constraintTop_toBottomOf="@+id/getFileButton" />
+            app:layout_constraintEnd_toEndOf="@+id/downloadFileButton"
+            app:layout_constraintStart_toStartOf="@+id/downloadFileButton"
+            app:layout_constraintTop_toBottomOf="@+id/downloadFileButton" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

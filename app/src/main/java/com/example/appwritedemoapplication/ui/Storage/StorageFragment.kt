@@ -10,9 +10,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import com.example.appwritedemoapplication.R
 import com.example.appwritedemoapplication.databinding.FragmentAccountBinding
 import com.example.appwritedemoapplication.databinding.FragmentStorageBinding
@@ -40,12 +42,11 @@ class StorageFragment : Fragment() {
         //         Inflate view and obtain an instance of the binding class
         binding = DataBindingUtil.inflate(
                 inflater,
-                R.layout.fragment_account,
+                R.layout.fragment_storage,
                 container,
                 false
         )
         binding.lifecycleOwner = viewLifecycleOwner
-        // TODO: Use the ViewModel
 
         binding.getFileButton.setOnClickListener{
             viewModel.getFileById()
@@ -78,6 +79,12 @@ class StorageFragment : Fragment() {
             }
 
         }
+
+        viewModel.error.observe(viewLifecycleOwner, Observer { event ->
+            event?.getContentIfNotHandled()?.let { // Only proceed if the event has never been handled
+                Toast.makeText(requireContext(), it.message , Toast.LENGTH_SHORT).show()
+            }
+        })
 
         return binding.root
     }

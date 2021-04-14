@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.appwritedemoapplication.utils.Event
 import io.appwrite.AppwriteClient
 import io.appwrite.exceptions.AppwriteException
 import io.appwrite.services.StorageService
@@ -30,10 +31,10 @@ class StorageViewModel : ViewModel() {
                 .setProject("6062f9c2c09ce")
     }
 
-    private val _error = MutableLiveData<AppwriteException>().apply {
+    private val _error = MutableLiveData<Event<AppwriteException>>().apply {
         value = null
     }
-    val error: LiveData<AppwriteException> = _error
+    val error: LiveData<Event<AppwriteException>> = _error
 
     fun getFileById() {
         viewModelScope.launch {
@@ -43,7 +44,7 @@ class StorageViewModel : ViewModel() {
                 val json = response.body?.string()
                 Log.d("TAG", json.toString())
             } catch (e: AppwriteException) {
-                _error.postValue(e)
+                _error.postValue(Event(e))
             }
 
         }
@@ -56,7 +57,7 @@ class StorageViewModel : ViewModel() {
                 val response = storageService.getFileDownload("60747acc659fb")
                 Log.d("TAG", response)
             }  catch (e: AppwriteException) {
-                _error.postValue(e)
+                _error.postValue(Event(e))
             }
         }
     }
@@ -78,7 +79,7 @@ class StorageViewModel : ViewModel() {
                 val json = response.body?.string()
                 Log.d("TAG", json.toString())
             } catch ( e : AppwriteException) {
-                _error.postValue(e)
+                _error.postValue(Event(e))
             }
 
         }
