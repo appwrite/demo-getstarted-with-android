@@ -16,7 +16,6 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.appwritedemoapplication.R
-import com.example.appwritedemoapplication.databinding.FragmentAccountBinding
 import com.example.appwritedemoapplication.databinding.FragmentStorageBinding
 
 class StorageFragment : Fragment() {
@@ -48,14 +47,19 @@ class StorageFragment : Fragment() {
         )
         binding.lifecycleOwner = viewLifecycleOwner
 
-        binding.getFileButton.setOnClickListener{
-            viewModel.getFileById()
-        }
-        binding.downloadFileButton.setOnClickListener{
-            viewModel.downloadFile()
+        binding.deleteFile.setOnClickListener{
+            viewModel.deleteFile(binding.fileId.text)
         }
 
-        binding.uploadFileButton.setOnClickListener {
+        binding.getFiles.setOnClickListener{
+            viewModel.getFiles()
+        }
+
+        binding.getFile.setOnClickListener{
+            viewModel.getFile(binding.fileId.text)
+        }
+
+        binding.uploadFile.setOnClickListener {
             // Pass in the mime type you'd like to allow the user to select
             // as the input
             when {
@@ -83,6 +87,12 @@ class StorageFragment : Fragment() {
         viewModel.error.observe(viewLifecycleOwner, Observer { event ->
             event?.getContentIfNotHandled()?.let { // Only proceed if the event has never been handled
                 Toast.makeText(requireContext(), it.message , Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        viewModel.response.observe(viewLifecycleOwner, Observer { event ->
+            event?.getContentIfNotHandled()?.let {
+                binding.responseTV.text = it
             }
         })
 

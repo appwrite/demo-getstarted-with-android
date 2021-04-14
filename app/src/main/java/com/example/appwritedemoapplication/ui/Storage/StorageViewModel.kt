@@ -4,66 +4,82 @@ import android.content.ContentResolver
 import android.content.Context
 import android.net.Uri
 import android.provider.OpenableColumns
+import android.text.Editable
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.appwritedemoapplication.utils.Client
 import com.example.appwritedemoapplication.utils.Event
-import io.appwrite.AppwriteClient
 import io.appwrite.exceptions.AppwriteException
 import io.appwrite.services.StorageService
 import kotlinx.coroutines.launch
+import org.json.JSONObject
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 
 class StorageViewModel : ViewModel() {
 
-    private val _filename = MutableLiveData<String>().apply {
-        value = ""
-    }
-    val filename: LiveData<String> = _filename
-
-    private val client by lazy {
-        AppwriteClient()
-                .setEndpoint("https://demo.appwrite.io/v1")
-                .setProject("6062f9c2c09ce")
-    }
-
     private val _error = MutableLiveData<Event<AppwriteException>>().apply {
         value = null
     }
     val error: LiveData<Event<AppwriteException>> = _error
 
-    fun getFileById() {
+    private val _response = MutableLiveData<Event<String>>().apply {
+        value = null
+    }
+    val response: LiveData<Event<String>> = _response
+
+    private val storageService by lazy {
+        StorageService(Client.client)
+    }
+
+
+    fun getFile(id: Editable) {
         viewModelScope.launch {
             try {
-                val storageService = StorageService(client)
-                val response = storageService.getFile("60747acc659fb")
-                val json = response.body?.string()
-                Log.d("TAG", json.toString())
+                var response = storageService.getFile(id.toString())
+                var json = response.body?.string() ?: ""
+                json = JSONObject(json).toString(4)
+                _response.postValue(Event(json))
             } catch (e: AppwriteException) {
                 _error.postValue(Event(e))
             }
-
         }
     }
 
-    fun downloadFile() {
+
+    fun deleteFile(id: Editable?) {
         viewModelScope.launch {
             try {
-                val storageService = StorageService(client)
-                val response = storageService.getFileDownload("60747acc659fb")
-                Log.d("TAG", response)
-            }  catch (e: AppwriteException) {
+                var response = storageService.deleteFile(id.toString())
+                var json = response.body?.string()?.ifEmpty { "{}" }
+                json = JSONObject(json).toString(4)
+                _response.postValue(Event(json))
+            } catch (e: AppwriteException) {
                 _error.postValue(Event(e))
             }
         }
     }
 
+    fun getFiles() {
+        viewModelScope.launch {
+            try {
+                var response = storageService.listFiles()
+                var json = response.body?.string() ?: ""
+                json = JSONObject(json).toString(4)
+                _response.postValue(Event(json))
+            } catch (e: AppwriteException) {
+                _error.postValue(Event(e))
+            }
+        }
+    }
+
+
     fun uploadFile(uri: Uri? , context: Context) {
-        val parcelFileDescriptor = context.contentResolver.openFileDescriptor(uri!!,"r", null) ?: return
+        val parcelFileDescriptor = context.contentResolver.openFileDescriptor(uri ?: return ,"r", null) ?: return
 
         viewModelScope.launch {
             try {
@@ -72,13 +88,12 @@ class StorageViewModel : ViewModel() {
                 val outputStream = FileOutputStream(file1)
                 inputStream.copyTo(outputStream)
 
-                val storageService = StorageService(client)
-                val read = listOf("*", "user:4tg24g224fw")
-
+                val read = listOf("*")
                 val response = storageService.createFile(file1, read, read)
-                val json = response.body?.string()
-                Log.d("TAG", json.toString())
-            } catch ( e : AppwriteException) {
+                var json = response.body?.string() ?: ""
+                json = JSONObject(json).toString(4)
+                _response.postValue(Event(json))
+            } catch (e: AppwriteException) {
                 _error.postValue(Event(e))
             }
 

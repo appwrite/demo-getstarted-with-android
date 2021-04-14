@@ -1,42 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/constraint_layout"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp">
+        android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/getFileButton"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Get File"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:padding="16dp">
 
-        <Button
-            android:id="@+id/downloadFileButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Download File"
-            app:layout_constraintEnd_toEndOf="@id/getFileButton"
-            app:layout_constraintTop_toBottomOf="@id/getFileButton"
-            app:layout_constraintStart_toStartOf="@id/getFileButton" />
+            <TextView
+                android:id="@+id/responseTV"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:enabled="true"
+                android:fadeScrollbars="false"
+                android:focusable="true"
+                android:longClickable="true"
+                android:scrollbars="vertical"
+                android:textIsSelectable="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/uploadFileButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Upload File"
-            app:layout_constraintEnd_toEndOf="@+id/downloadFileButton"
-            app:layout_constraintStart_toStartOf="@+id/downloadFileButton"
-            app:layout_constraintTop_toBottomOf="@+id/downloadFileButton" />
+            <Button
+                android:id="@+id/uploadFile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Upload \File"
+                app:layout_constraintEnd_toStartOf="@+id/getFiles"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/responseTV" />
 
+            <Button
+                android:id="@+id/getFiles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="List \Files"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@id/uploadFile"
+                app:layout_constraintTop_toTopOf="@id/uploadFile" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <EditText
+                android:id="@+id/fileId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="File Id"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/uploadFile" />
+
+            <Button
+                android:id="@+id/getFile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Get \File"
+                app:layout_constraintEnd_toStartOf="@+id/deleteFile"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fileId" />
+
+            <Button
+                android:id="@+id/deleteFile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delete \File"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@id/getFile"
+                app:layout_constraintTop_toTopOf="@id/getFile" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>
