@@ -1,6 +1,7 @@
 package com.example.appwritedemoapplication.ui.Accounts
 
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.appwritedemoapplication.R
 import com.example.appwritedemoapplication.databinding.FragmentAccountBinding
-import com.google.android.material.snackbar.Snackbar
+
 
 class AccountsFragment : Fragment() {
 
@@ -31,13 +32,15 @@ class AccountsFragment : Fragment() {
             false
         )
         binding.lifecycleOwner = viewLifecycleOwner
-        binding.loginButton.setOnClickListener{
-            viewModel.onLogin(binding.emailEditText.text, binding.passwordEditText.text)
+        binding.login.setOnClickListener{
+            viewModel.onLogin(binding.email.text, binding.password.text)
         }
 
-        binding.signupButton.setOnClickListener{
-            viewModel.onSignup(binding.signupEmailEditText.text, binding.signupPasswordEditText.text, binding.signupNameEditText.text)
+        binding.signup.setOnClickListener{
+            viewModel.onSignup(binding.email.text, binding.password.text, binding.name.text)
         }
+
+        binding.responseTV.movementMethod = ScrollingMovementMethod()
 
         viewModel.error.observe(viewLifecycleOwner, Observer { event ->
             event?.getContentIfNotHandled()?.let { // Only proceed if the event has never been handled
@@ -47,7 +50,7 @@ class AccountsFragment : Fragment() {
 
         viewModel.response.observe(viewLifecycleOwner, Observer { event ->
             event?.getContentIfNotHandled()?.let {
-                Snackbar.make(binding.root, it, Snackbar.LENGTH_LONG).show()
+                binding.responseTV.text = it
             }
         })
 

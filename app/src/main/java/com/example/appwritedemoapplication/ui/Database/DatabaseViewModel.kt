@@ -5,14 +5,22 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.appwritedemoapplication.utils.Event
+import io.appwrite.exceptions.AppwriteException
 import io.appwrite.services.DatabaseService
 import kotlinx.coroutines.launch
 
 class DatabaseViewModel : ViewModel() {
 
-    fun onLogin() {
-        Log.d("{ View Model }","Button pressed");
+    private val _error = MutableLiveData<Event<AppwriteException>>().apply {
+        value = null
     }
+    val error: LiveData<Event<AppwriteException>> = _error
+
+    private val _response = MutableLiveData<Event<String>>().apply {
+        value = null
+    }
+    val response: LiveData<Event<String>> = _response
 
     fun getData(){
 //        val databaseService = DatabaseService(client)

@@ -10,147 +10,85 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraint_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:padding="16dp">
 
             <TextView
-                android:id="@+id/signupTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="Signup"
-                android:textSize="32sp"
+                android:id="@+id/responseTV"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:scrollbars="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/signupEmailTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Email"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="@id/signupTV"
-                app:layout_constraintTop_toBottomOf="@id/signupTV" />
-
             <EditText
-                android:id="@+id/signupEmailEditText"
+                android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                app:layout_constraintStart_toStartOf="@id/signupEmailTV"
-                app:layout_constraintTop_toBottomOf="@id/signupEmailTV"
-                tools:layout_editor_absoluteX="0dp">
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                app:layout_constraintStart_toStartOf="@id/responseTV"
+                app:layout_constraintTop_toBottomOf="@id/responseTV" />
 
-            </EditText>
-
-            <TextView
-                android:id="@+id/signupPasswordTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Password"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="@id/signupEmailEditText"
-                app:layout_constraintTop_toBottomOf="@+id/signupEmailEditText" />
 
             <EditText
-                android:id="@+id/signupPasswordEditText"
+                android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:hint="password"
                 android:inputType="textPassword"
-                app:layout_constraintStart_toStartOf="@id/signupPasswordTV"
-                app:layout_constraintTop_toBottomOf="@id/signupPasswordTV" />
-
-            <TextView
-                android:id="@+id/signupNameTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Name"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="@id/signupPasswordEditText"
-                app:layout_constraintTop_toBottomOf="@+id/signupPasswordEditText" />
+                app:layout_constraintStart_toStartOf="@id/email"
+                app:layout_constraintTop_toBottomOf="@id/email" />
 
             <EditText
-                android:id="@+id/signupNameEditText"
+                android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                app:layout_constraintStart_toStartOf="@id/signupNameTV"
-                app:layout_constraintTop_toBottomOf="@id/signupNameTV" />
+                android:hint="name"
+                android:inputType="text"
+                app:layout_constraintStart_toStartOf="@id/password"
+                app:layout_constraintTop_toBottomOf="@id/password" />
 
             <Button
-                android:id="@+id/signupButton"
+                android:id="@+id/login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
+                android:text="Login"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/signup"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/name" />
+
+            <Button
+                android:id="@+id/signup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:text="Signup"
-                app:layout_constraintEnd_toEndOf="@id/signupNameEditText"
-                app:layout_constraintStart_toStartOf="@id/signupNameEditText"
-                app:layout_constraintTop_toBottomOf="@+id/signupNameEditText" />
-
-
-            <!--    Login -->
-            <TextView
-                android:id="@+id/loginTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="Login"
-                android:textSize="32sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/signupButton" />
-
-            <TextView
-                android:id="@+id/emailTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Email"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/loginTV" />
-
-            <EditText
-                android:id="@+id/emailEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@+id/emailTV"
-                tools:layout_editor_absoluteX="0dp">
-
-            </EditText>
-
-            <TextView
-                android:id="@+id/passwordTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Password"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/emailEditText" />
-
-            <EditText
-                android:id="@+id/passwordEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:inputType="textPassword"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/passwordTV" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/oauth"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/login"
+                app:layout_constraintTop_toBottomOf="@+id/name" />
 
             <Button
-                android:id="@+id/loginButton"
+                android:id="@+id/oauth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Login"
+                android:layout_marginTop="8dp"
+                android:text="OAuth"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/signup"
+                app:layout_constraintTop_toBottomOf="@+id/name" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

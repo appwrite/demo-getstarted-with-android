@@ -11,6 +11,7 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.json.JSONObject
 import java.lang.Exception
 
 
@@ -38,6 +39,7 @@ class AccountsViewModel : ViewModel() {
                 val accountService = AccountService(client)
                 var response = accountService.createSession(email.toString(), password.toString())
                 var json = response.body?.string() ?: ""
+                json = JSONObject(json).toString(2)
                 _response.postValue(Event(json))
             } catch (e: AppwriteException) {
                 _error.postValue(Event(e))
@@ -52,6 +54,7 @@ class AccountsViewModel : ViewModel() {
                 val accountService = AccountService(client)
                 var response = accountService.create(email.toString(), password.toString(), name.toString())
                 var json = response.body?.string() ?: ""
+                json = JSONObject(json).toString(2)
                 _response.postValue(Event(json))
             } catch (e: AppwriteException) {
                 _error.postValue(Event(e))
