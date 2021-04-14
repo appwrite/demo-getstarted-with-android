@@ -33,6 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:hint="Email"
+                android:text="test@test.com"
                 android:inputType="textEmailAddress"
                 app:layout_constraintStart_toStartOf="@id/responseTV"
                 app:layout_constraintTop_toBottomOf="@id/responseTV" />
@@ -44,6 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:hint="password"
+                android:text="testtest"
                 android:inputType="textPassword"
                 app:layout_constraintStart_toStartOf="@id/email"
                 app:layout_constraintTop_toBottomOf="@id/email" />

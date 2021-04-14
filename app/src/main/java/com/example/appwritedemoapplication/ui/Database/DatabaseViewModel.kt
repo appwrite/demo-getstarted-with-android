@@ -81,7 +81,7 @@ class DatabaseViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 var response = databaseService.deleteDocument(COLLECTION_ID, id.toString())
-                var json = response.body?.string() ?: ""
+                var json = response.body?.string()?.ifEmpty { "{}" }
                 json = JSONObject(json).toString(4)
                 _response.postValue(Event(json))
             } catch (e: AppwriteException) {
