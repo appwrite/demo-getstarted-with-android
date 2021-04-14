@@ -17,6 +17,7 @@
                 android:id="@+id/responseTV"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
+                android:textIsSelectable="true"
                 android:scrollbars="vertical"
                 android:fadeScrollbars="false"
                 app:layout_constraintEnd_toEndOf="parent"
