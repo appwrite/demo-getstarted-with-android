@@ -43,7 +43,7 @@ class DatabaseViewModel : ViewModel() {
             try {
                 val response = databaseService.createDocument(COLLECTION_ID, data, read, read)
                 var json = response.body?.string()
-                json = JSONObject(json).toString(8)
+                json = JSONObject(json).toString(4)
                 _response.postValue(Event(json))
             } catch (e: AppwriteException) {
                 _error.postValue(Event(e))
@@ -56,7 +56,7 @@ class DatabaseViewModel : ViewModel() {
             try {
                 var response = databaseService.listDocuments(COLLECTION_ID)
                 var json = response.body?.string() ?: ""
-                json = JSONObject(json).toString(8)
+                json = JSONObject(json).toString(4)
                 _response.postValue(Event(json))
             } catch (e: AppwriteException) {
                 _error.postValue(Event(e))
@@ -69,7 +69,7 @@ class DatabaseViewModel : ViewModel() {
             try {
                 var response = databaseService.getDocument(COLLECTION_ID, id.toString())
                 var json = response.body?.string() ?: ""
-                json = JSONObject(json).toString(8)
+                json = JSONObject(json).toString(4)
                 _response.postValue(Event(json))
             } catch (e: AppwriteException) {
                 _error.postValue(Event(e))
@@ -82,7 +82,7 @@ class DatabaseViewModel : ViewModel() {
             try {
                 var response = databaseService.deleteDocument(COLLECTION_ID, id.toString())
                 var json = response.body?.string() ?: ""
-                json = JSONObject(json).toString(8)
+                json = JSONObject(json).toString(4)
                 _response.postValue(Event(json))
             } catch (e: AppwriteException) {
                 _error.postValue(Event(e))

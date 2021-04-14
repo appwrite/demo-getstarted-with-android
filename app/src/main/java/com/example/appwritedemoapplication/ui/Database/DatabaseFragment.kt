@@ -1,6 +1,7 @@
 package com.example.appwritedemoapplication.ui.Database
 
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -48,6 +49,8 @@ class DatabaseFragment : Fragment() {
         binding.deleteDocument.setOnClickListener{
             viewModel.deleteDocument(binding.documentId.text)
         }
+
+        binding.responseTV.movementMethod = ScrollingMovementMethod()
 
         viewModel = ViewModelProvider(this).get(DatabaseViewModel::class.java)
         viewModel.error.observe(viewLifecycleOwner, Observer { event ->
