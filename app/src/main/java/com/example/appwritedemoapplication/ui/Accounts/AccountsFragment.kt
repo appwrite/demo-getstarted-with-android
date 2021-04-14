@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.appwritedemoapplication.R
 import com.example.appwritedemoapplication.databinding.FragmentAccountBinding
+import com.google.android.material.snackbar.Snackbar
 
 class AccountsFragment : Fragment() {
 
@@ -41,6 +42,12 @@ class AccountsFragment : Fragment() {
         viewModel.error.observe(viewLifecycleOwner, Observer { event ->
             event?.getContentIfNotHandled()?.let { // Only proceed if the event has never been handled
                 Toast.makeText(requireContext(), it.message , Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        viewModel.response.observe(viewLifecycleOwner, Observer { event ->
+            event?.getContentIfNotHandled()?.let {
+                Snackbar.make(binding.root, it, Snackbar.LENGTH_LONG).show()
             }
         })
 

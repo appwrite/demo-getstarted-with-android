@@ -21,6 +21,11 @@ class AccountsViewModel : ViewModel() {
     }
     val error: LiveData<Event<AppwriteException>> = _error
 
+    private val _response = MutableLiveData<Event<String>>().apply {
+        value = null
+    }
+    val response: LiveData<Event<String>> = _response
+
     private val client by lazy {
         AppwriteClient()
             .setEndpoint("https://demo.appwrite.io/v1")
@@ -32,8 +37,8 @@ class AccountsViewModel : ViewModel() {
             try {
                 val accountService = AccountService(client)
                 var response = accountService.createSession(email.toString(), password.toString())
-                var json = response.body?.string()
-                Log.d("TAG", json.toString())
+                var json = response.body?.string() ?: ""
+                _response.postValue(Event(json))
             } catch (e: AppwriteException) {
                 _error.postValue(Event(e))
             }
@@ -46,8 +51,8 @@ class AccountsViewModel : ViewModel() {
             try {
                 val accountService = AccountService(client)
                 var response = accountService.create(email.toString(), password.toString(), name.toString())
-                var json = response.body?.string()
-                Log.d("TAG", json.toString())
+                var json = response.body?.string() ?: ""
+                _response.postValue(Event(json))
             } catch (e: AppwriteException) {
                 _error.postValue(Event(e))
             }
