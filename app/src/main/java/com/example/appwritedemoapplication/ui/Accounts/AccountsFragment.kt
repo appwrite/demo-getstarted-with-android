@@ -1,11 +1,11 @@
 package com.example.appwritedemoapplication.ui.Accounts
 
 import android.os.Bundle
-import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.ComponentActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -38,6 +38,14 @@ class AccountsFragment : Fragment() {
 
         binding.signup.setOnClickListener{
             viewModel.onSignup(binding.email.text, binding.password.text, binding.name.text)
+        }
+
+        binding.getUser.setOnClickListener{
+            viewModel.getUser()
+        }
+
+        binding.oAuth.setOnClickListener{
+            viewModel.oAuthLogin(activity as ComponentActivity)
         }
 
         viewModel.error.observe(viewLifecycleOwner, Observer { event ->
