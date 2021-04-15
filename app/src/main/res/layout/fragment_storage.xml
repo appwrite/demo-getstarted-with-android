@@ -13,11 +13,12 @@
             android:layout_height="wrap_content"
             android:padding="16dp">
 
-            <TextView
+            <EditText
                 android:id="@+id/responseTV"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:enabled="true"
+                android:background="@null"
                 android:fadeScrollbars="false"
                 android:focusable="true"
                 android:longClickable="true"
