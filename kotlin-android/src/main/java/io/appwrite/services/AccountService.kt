@@ -433,7 +433,7 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
         }
 
         val url = Uri.parse("${client.endPoint}${path}?${query.joinToString("&")}")
-        val callbackUrlScheme = "callback-${client.config["project"]}"
+        val callbackUrlScheme = "appwrite-callback-${client.config["project"]}"
 
         WebAuthComponent.authenticate(activity, url, callbackUrlScheme) {
             if (it.isFailure) {
@@ -455,7 +455,7 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
                 .build()
                 
             client.cookieJar.saveFromResponse(
-                resultUrl.toHttpUrl(),
+                client.endPoint.toHttpUrl(),
                 listOf(cookie)
             )
         }

@@ -43,14 +43,6 @@ class AvatarsService(private val client: AppwriteClient) : BaseService(client) {
             "key" to client.config["key"]
         )
 
-
-        val httpBuilder = HttpUrl.Builder().build().newBuilder(client.endPoint + path)
-            ?: throw AppwriteException("Badly formed url!")
-
-        params.forEach {
-            httpBuilder.addQueryParameter(it.key, it.value.toString())
-        }
-
         return client.call("GET", path, params = params)
     }
     
@@ -84,14 +76,6 @@ class AvatarsService(private val client: AppwriteClient) : BaseService(client) {
             "key" to client.config["key"]
         )
 
-
-        val httpBuilder = HttpUrl.Builder().build().newBuilder(client.endPoint + path)
-            ?: throw AppwriteException("Badly formed url!")
-
-        params.forEach {
-            httpBuilder.addQueryParameter(it.key, it.value.toString())
-        }
-
         return client.call("GET", path, params = params)
     }
     
@@ -116,14 +100,6 @@ class AvatarsService(private val client: AppwriteClient) : BaseService(client) {
             "project" to client.config["project"],
             "key" to client.config["key"]
         )
-
-
-        val httpBuilder = HttpUrl.Builder().build().newBuilder(client.endPoint + path)
-            ?: throw AppwriteException("Badly formed url!")
-
-        params.forEach {
-            httpBuilder.addQueryParameter(it.key, it.value.toString())
-        }
 
         return client.call("GET", path, params = params)
     }
@@ -158,14 +134,6 @@ class AvatarsService(private val client: AppwriteClient) : BaseService(client) {
             "key" to client.config["key"]
         )
 
-
-        val httpBuilder = HttpUrl.Builder().build().newBuilder(client.endPoint + path)
-            ?: throw AppwriteException("Badly formed url!")
-
-        params.forEach {
-            httpBuilder.addQueryParameter(it.key, it.value.toString())
-        }
-
         return client.call("GET", path, params = params)
     }
     
@@ -197,14 +165,6 @@ class AvatarsService(private val client: AppwriteClient) : BaseService(client) {
             "project" to client.config["project"],
             "key" to client.config["key"]
         )
-
-
-        val httpBuilder = HttpUrl.Builder().build().newBuilder(client.endPoint + path)
-            ?: throw AppwriteException("Badly formed url!")
-
-        params.forEach {
-            httpBuilder.addQueryParameter(it.key, it.value.toString())
-        }
 
         return client.call("GET", path, params = params)
     }
@@ -250,14 +210,6 @@ class AvatarsService(private val client: AppwriteClient) : BaseService(client) {
             "key" to client.config["key"]
         )
 
-
-        val httpBuilder = HttpUrl.Builder().build().newBuilder(client.endPoint + path)
-            ?: throw AppwriteException("Badly formed url!")
-
-        params.forEach {
-            httpBuilder.addQueryParameter(it.key, it.value.toString())
-        }
-
         return client.call("GET", path, params = params)
     }
     
@@ -290,14 +242,6 @@ class AvatarsService(private val client: AppwriteClient) : BaseService(client) {
             "project" to client.config["project"],
             "key" to client.config["key"]
         )
-
-
-        val httpBuilder = HttpUrl.Builder().build().newBuilder(client.endPoint + path)
-            ?: throw AppwriteException("Badly formed url!")
-
-        params.forEach {
-            httpBuilder.addQueryParameter(it.key, it.value.toString())
-        }
 
         return client.call("GET", path, params = params)
     }

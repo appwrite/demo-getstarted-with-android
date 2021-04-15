@@ -20,6 +20,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.logging.HttpLoggingInterceptor
+import java.io.BufferedReader
 import java.io.File
 import java.io.IOException
 import java.security.SecureRandom
@@ -226,13 +227,23 @@ class AppwriteClient(
                 if (it.isCancelled) {
                     return
                 }
-                it.resumeWithException(e)
+                it.cancel(e)
             }
 
             override fun onResponse(call: Call, response: Response) {
                 if (response.code >= 400) {
-                    val err = response.body?.string()?.fromJson(Error::class.java)
-                    it.cancel(AppwriteException(err?.message, err?.code, response.toString()))
+                    val bodyString = response.body
+                        ?.charStream()
+                        ?.buffered()
+                        ?.use(BufferedReader::readText)
+
+                    val error = bodyString?.fromJson(Error::class.java)
+
+                    it.cancel(AppwriteException(
+                        error?.message,
+                        error?.code,
+                        bodyString
+                    ))
                 }
                 it.resume(response)
             }
