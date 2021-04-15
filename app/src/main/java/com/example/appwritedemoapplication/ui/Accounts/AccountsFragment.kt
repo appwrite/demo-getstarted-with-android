@@ -40,8 +40,6 @@ class AccountsFragment : Fragment() {
             viewModel.onSignup(binding.email.text, binding.password.text, binding.name.text)
         }
 
-        binding.responseTV.movementMethod = ScrollingMovementMethod()
-
         viewModel.error.observe(viewLifecycleOwner, Observer { event ->
             event?.getContentIfNotHandled()?.let { // Only proceed if the event has never been handled
                 Toast.makeText(requireContext(), it.message , Toast.LENGTH_SHORT).show()
@@ -50,7 +48,7 @@ class AccountsFragment : Fragment() {
 
         viewModel.response.observe(viewLifecycleOwner, Observer { event ->
             event?.getContentIfNotHandled()?.let {
-                binding.responseTV.text = it
+                binding.responseTV.setText(it)
             }
         })
 

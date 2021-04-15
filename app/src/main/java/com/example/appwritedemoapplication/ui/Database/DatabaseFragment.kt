@@ -50,8 +50,6 @@ class DatabaseFragment : Fragment() {
             viewModel.deleteDocument(binding.documentId.text)
         }
 
-        binding.responseTV.movementMethod = ScrollingMovementMethod()
-
         viewModel = ViewModelProvider(this).get(DatabaseViewModel::class.java)
         viewModel.error.observe(viewLifecycleOwner, Observer { event ->
             event?.getContentIfNotHandled()?.let { // Only proceed if the event has never been handled
@@ -61,7 +59,7 @@ class DatabaseFragment : Fragment() {
 
         viewModel.response.observe(viewLifecycleOwner, Observer { event ->
             event?.getContentIfNotHandled()?.let {
-                binding.responseTV.text = it
+                binding.responseTV.setText(it)
             }
         })
 

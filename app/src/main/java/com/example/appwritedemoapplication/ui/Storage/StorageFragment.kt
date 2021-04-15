@@ -92,7 +92,7 @@ class StorageFragment : Fragment() {
 
         viewModel.response.observe(viewLifecycleOwner, Observer { event ->
             event?.getContentIfNotHandled()?.let {
-                binding.responseTV.text = it
+                binding.responseTV.setText(it)
             }
         })
 

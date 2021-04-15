@@ -47,8 +47,6 @@ class FunctionsFragment : Fragment() {
         }
 
 
-        binding.responseTV.movementMethod = ScrollingMovementMethod()
-
         viewModel = ViewModelProvider(this).get(FunctionsViewModel::class.java)
         viewModel.error.observe(viewLifecycleOwner, Observer { event ->
             event?.getContentIfNotHandled()?.let { // Only proceed if the event has never been handled
