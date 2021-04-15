@@ -6,27 +6,50 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import com.example.appwritedemoapplication.R
+import com.example.appwritedemoapplication.databinding.FragmentDatabaseBinding
+import com.example.appwritedemoapplication.databinding.FragmentLocalizationBinding
+import com.example.appwritedemoapplication.ui.Database.DatabaseViewModel
 
 class LocalizationFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = LocalizationFragment()
-    }
-
+    private lateinit var binding: FragmentLocalizationBinding
     private lateinit var viewModel: LocalizationViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater ,
+            container: ViewGroup? ,
+            savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_localization, container, false)
-    }
+        // Inflate view and obtain an instance of the binding class
+        binding = DataBindingUtil.inflate(
+                inflater,
+                R.layout.fragment_localization,
+                container,
+                false
+        )
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+        binding.getLocale.setOnClickListener{
+            viewModel.getLocale()
+        }
+
         viewModel = ViewModelProvider(this).get(LocalizationViewModel::class.java)
-        // TODO: Use the ViewModel
+        viewModel.error.observe(viewLifecycleOwner, Observer { event ->
+            event?.getContentIfNotHandled()?.let { // Only proceed if the event has never been handled
+                Toast.makeText(requireContext(), it.message , Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        viewModel.response.observe(viewLifecycleOwner, Observer { event ->
+            event?.getContentIfNotHandled()?.let {
+                binding.responseTV.setText(it)
+            }
+        })
+
+        return binding.root
     }
 
 }
