@@ -1,10 +1,13 @@
 package io.appwrite.services
 
+import android.net.Uri
 import io.appwrite.AppwriteClient
 import io.appwrite.enums.OrderType
-import io.appwrite.exceptions.AppwriteException;
+import io.appwrite.exceptions.AppwriteException
+import okhttp3.Cookie
 import okhttp3.Response
 import okhttp3.HttpUrl
+import okhttp3.HttpUrl.Companion.toHttpUrl
 import java.io.File
 
 class StorageService(private val client: AppwriteClient) : BaseService(client) {
@@ -22,6 +25,7 @@ class StorageService(private val client: AppwriteClient) : BaseService(client) {
      * @param orderType
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun listFiles(
 		search: String = "",
@@ -36,6 +40,7 @@ class StorageService(private val client: AppwriteClient) : BaseService(client) {
             "offset" to offset,
             "orderType" to orderType.name
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -54,6 +59,7 @@ class StorageService(private val client: AppwriteClient) : BaseService(client) {
      * @param write
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun createFile(
 		file: File,
@@ -66,6 +72,7 @@ class StorageService(private val client: AppwriteClient) : BaseService(client) {
             "read" to read,
             "write" to write
         )
+
         val headers = mapOf(
 			"content-type" to "multipart/form-data"
         )
@@ -81,6 +88,7 @@ class StorageService(private val client: AppwriteClient) : BaseService(client) {
      * @param fileId
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getFile(
 		fileId: String
@@ -88,6 +96,7 @@ class StorageService(private val client: AppwriteClient) : BaseService(client) {
         val path = "/storage/files/{fileId}".replace("{fileId}", fileId)
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -105,6 +114,7 @@ class StorageService(private val client: AppwriteClient) : BaseService(client) {
      * @param write
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun updateFile(
 		fileId: String,
@@ -116,6 +126,7 @@ class StorageService(private val client: AppwriteClient) : BaseService(client) {
             "read" to read,
             "write" to write
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -131,6 +142,7 @@ class StorageService(private val client: AppwriteClient) : BaseService(client) {
      * @param fileId
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun deleteFile(
 		fileId: String
@@ -138,6 +150,7 @@ class StorageService(private val client: AppwriteClient) : BaseService(client) {
         val path = "/storage/files/{fileId}".replace("{fileId}", fileId)
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -154,24 +167,26 @@ class StorageService(private val client: AppwriteClient) : BaseService(client) {
      * @param fileId
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getFileDownload(
 		fileId: String
-	): String {
+	): Response {
         val path = "/storage/files/{fileId}/download".replace("{fileId}", fileId)
         val params = mapOf<String, Any?>(
             "project" to client.config["project"],
             "key" to client.config["key"]
         )
 
-        val httpBuilder = HttpUrl.Builder().build().newBuilder(client.endPoint + path)
-            ?: throw AppwriteException("Badly formed url!")
 
-        params.forEach {
-            httpBuilder.addQueryParameter(it.key, it.value.toString())
-        }
+//        val httpBuilder = HttpUrl.Builder().build().newBuilder(client.endPoint + path)
+//            ?: throw AppwriteException("Badly formed url!")
+//
+//        params.forEach {
+//            httpBuilder.addQueryParameter(it.key, it.value.toString())
+//        }
 
-        return httpBuilder.build().toString()
+        return client.call("GET", path, params = params)
     }
     
     /**
@@ -190,6 +205,7 @@ class StorageService(private val client: AppwriteClient) : BaseService(client) {
      * @param output
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getFilePreview(
 		fileId: String,
@@ -198,7 +214,7 @@ class StorageService(private val client: AppwriteClient) : BaseService(client) {
 		quality: Int = 100,
 		background: String = "",
 		output: String = ""
-	): String {
+	): Response {
         val path = "/storage/files/{fileId}/preview".replace("{fileId}", fileId)
         val params = mapOf<String, Any?>(
             "width" to width,
@@ -210,6 +226,7 @@ class StorageService(private val client: AppwriteClient) : BaseService(client) {
             "key" to client.config["key"]
         )
 
+
         val httpBuilder = HttpUrl.Builder().build().newBuilder(client.endPoint + path)
             ?: throw AppwriteException("Badly formed url!")
 
@@ -217,7 +234,7 @@ class StorageService(private val client: AppwriteClient) : BaseService(client) {
             httpBuilder.addQueryParameter(it.key, it.value.toString())
         }
 
-        return httpBuilder.build().toString()
+        return client.call("GET", path, params = params)
     }
     
     /**
@@ -230,15 +247,17 @@ class StorageService(private val client: AppwriteClient) : BaseService(client) {
      * @param fileId
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getFileView(
 		fileId: String
-	): String {
+	): Response {
         val path = "/storage/files/{fileId}/view".replace("{fileId}", fileId)
         val params = mapOf<String, Any?>(
             "project" to client.config["project"],
             "key" to client.config["key"]
         )
+
 
         val httpBuilder = HttpUrl.Builder().build().newBuilder(client.endPoint + path)
             ?: throw AppwriteException("Badly formed url!")
@@ -247,7 +266,7 @@ class StorageService(private val client: AppwriteClient) : BaseService(client) {
             httpBuilder.addQueryParameter(it.key, it.value.toString())
         }
 
-        return httpBuilder.build().toString()
+        return client.call("GET", path, params = params)
     }
     
 }

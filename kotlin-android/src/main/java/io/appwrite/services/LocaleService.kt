@@ -1,8 +1,10 @@
 package io.appwrite.services
 
+import android.net.Uri
 import io.appwrite.AppwriteClient
 import io.appwrite.enums.OrderType
-import io.appwrite.exceptions.AppwriteException;
+import io.appwrite.exceptions.AppwriteException
+import okhttp3.Cookie
 import okhttp3.Response
 import java.io.File
 
@@ -20,11 +22,13 @@ class LocaleService(private val client: AppwriteClient) : BaseService(client) {
      *
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun get(): Response {
         val path = "/locale"
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -39,11 +43,13 @@ class LocaleService(private val client: AppwriteClient) : BaseService(client) {
      *
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getContinents(): Response {
         val path = "/locale/continents"
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -58,11 +64,13 @@ class LocaleService(private val client: AppwriteClient) : BaseService(client) {
      *
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getCountries(): Response {
         val path = "/locale/countries"
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -77,11 +85,13 @@ class LocaleService(private val client: AppwriteClient) : BaseService(client) {
      *
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getCountriesEU(): Response {
         val path = "/locale/countries/eu"
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -96,11 +106,13 @@ class LocaleService(private val client: AppwriteClient) : BaseService(client) {
      *
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getCountriesPhones(): Response {
         val path = "/locale/countries/phones"
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -116,11 +128,13 @@ class LocaleService(private val client: AppwriteClient) : BaseService(client) {
      *
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getCurrencies(): Response {
         val path = "/locale/currencies"
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -135,11 +149,13 @@ class LocaleService(private val client: AppwriteClient) : BaseService(client) {
      *
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getLanguages(): Response {
         val path = "/locale/languages"
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )

@@ -1,8 +1,10 @@
 package io.appwrite.services
 
+import android.net.Uri
 import io.appwrite.AppwriteClient
 import io.appwrite.enums.OrderType
-import io.appwrite.exceptions.AppwriteException;
+import io.appwrite.exceptions.AppwriteException
+import okhttp3.Cookie
 import okhttp3.Response
 import java.io.File
 
@@ -17,6 +19,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
      * @param orderType
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun list(
 		search: String = "",
@@ -31,6 +34,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
             "offset" to offset,
             "orderType" to orderType.name
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -53,6 +57,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
      * @param legalTaxId
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun create(
 		name: String,
@@ -81,6 +86,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
             "legalAddress" to legalAddress,
             "legalTaxId" to legalTaxId
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -93,6 +99,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
      * @param projectId
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun get(
 		projectId: String
@@ -100,6 +107,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
         val path = "/projects/{projectId}".replace("{projectId}", projectId)
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -122,6 +130,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
      * @param legalTaxId
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun update(
 		projectId: String,
@@ -149,6 +158,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
             "legalAddress" to legalAddress,
             "legalTaxId" to legalTaxId
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -162,6 +172,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
      * @param password
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun delete(
 		projectId: String,
@@ -171,6 +182,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
         val params = mapOf<String, Any?>(
             "password" to password
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -183,6 +195,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
      * @param projectId
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun listDomains(
 		projectId: String
@@ -190,6 +203,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
         val path = "/projects/{projectId}/domains".replace("{projectId}", projectId)
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -203,6 +217,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
      * @param domain
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun createDomain(
 		projectId: String,
@@ -212,6 +227,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
         val params = mapOf<String, Any?>(
             "domain" to domain
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -225,6 +241,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
      * @param domainId
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getDomain(
 		projectId: String,
@@ -233,6 +250,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
         val path = "/projects/{projectId}/domains/{domainId}".replace("{projectId}", projectId).replace("{domainId}", domainId)
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -246,6 +264,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
      * @param domainId
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun deleteDomain(
 		projectId: String,
@@ -254,6 +273,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
         val path = "/projects/{projectId}/domains/{domainId}".replace("{projectId}", projectId).replace("{domainId}", domainId)
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -267,6 +287,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
      * @param domainId
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun updateDomainVerification(
 		projectId: String,
@@ -275,6 +296,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
         val path = "/projects/{projectId}/domains/{domainId}/verification".replace("{projectId}", projectId).replace("{domainId}", domainId)
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -287,6 +309,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
      * @param projectId
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun listKeys(
 		projectId: String
@@ -294,6 +317,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
         val path = "/projects/{projectId}/keys".replace("{projectId}", projectId)
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -308,6 +332,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
      * @param scopes
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun createKey(
 		projectId: String,
@@ -319,6 +344,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
             "name" to name,
             "scopes" to scopes
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -332,6 +358,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
      * @param keyId
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getKey(
 		projectId: String,
@@ -340,6 +367,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
         val path = "/projects/{projectId}/keys/{keyId}".replace("{projectId}", projectId).replace("{keyId}", keyId)
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -355,6 +383,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
      * @param scopes
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun updateKey(
 		projectId: String,
@@ -367,6 +396,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
             "name" to name,
             "scopes" to scopes
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -380,6 +410,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
      * @param keyId
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun deleteKey(
 		projectId: String,
@@ -388,6 +419,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
         val path = "/projects/{projectId}/keys/{keyId}".replace("{projectId}", projectId).replace("{keyId}", keyId)
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -403,6 +435,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
      * @param secret
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun updateOAuth2(
 		projectId: String,
@@ -416,6 +449,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
             "appId" to appId,
             "secret" to secret
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -428,6 +462,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
      * @param projectId
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun listPlatforms(
 		projectId: String
@@ -435,6 +470,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
         val path = "/projects/{projectId}/platforms".replace("{projectId}", projectId)
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -452,6 +488,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
      * @param hostname
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun createPlatform(
 		projectId: String,
@@ -469,6 +506,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
             "store" to store,
             "hostname" to hostname
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -482,6 +520,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
      * @param platformId
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getPlatform(
 		projectId: String,
@@ -490,6 +529,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
         val path = "/projects/{projectId}/platforms/{platformId}".replace("{projectId}", projectId).replace("{platformId}", platformId)
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -507,6 +547,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
      * @param hostname
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun updatePlatform(
 		projectId: String,
@@ -523,6 +564,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
             "store" to store,
             "hostname" to hostname
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -536,6 +578,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
      * @param platformId
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun deletePlatform(
 		projectId: String,
@@ -544,6 +587,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
         val path = "/projects/{projectId}/platforms/{platformId}".replace("{projectId}", projectId).replace("{platformId}", platformId)
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -556,6 +600,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
      * @param projectId
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun listTasks(
 		projectId: String
@@ -563,6 +608,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
         val path = "/projects/{projectId}/tasks".replace("{projectId}", projectId)
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -584,6 +630,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
      * @param httpPass
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun createTask(
 		projectId: String,
@@ -609,6 +656,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
             "httpUser" to httpUser,
             "httpPass" to httpPass
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -622,6 +670,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
      * @param taskId
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getTask(
 		projectId: String,
@@ -630,6 +679,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
         val path = "/projects/{projectId}/tasks/{taskId}".replace("{projectId}", projectId).replace("{taskId}", taskId)
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -652,6 +702,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
      * @param httpPass
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun updateTask(
 		projectId: String,
@@ -678,6 +729,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
             "httpUser" to httpUser,
             "httpPass" to httpPass
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -691,6 +743,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
      * @param taskId
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun deleteTask(
 		projectId: String,
@@ -699,6 +752,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
         val path = "/projects/{projectId}/tasks/{taskId}".replace("{projectId}", projectId).replace("{taskId}", taskId)
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -712,6 +766,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
      * @param range
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getUsage(
 		projectId: String,
@@ -721,6 +776,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
         val params = mapOf<String, Any?>(
             "range" to range
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -733,6 +789,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
      * @param projectId
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun listWebhooks(
 		projectId: String
@@ -740,6 +797,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
         val path = "/projects/{projectId}/webhooks".replace("{projectId}", projectId)
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -758,6 +816,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
      * @param httpPass
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun createWebhook(
 		projectId: String,
@@ -777,6 +836,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
             "httpUser" to httpUser,
             "httpPass" to httpPass
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -790,6 +850,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
      * @param webhookId
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getWebhook(
 		projectId: String,
@@ -798,6 +859,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
         val path = "/projects/{projectId}/webhooks/{webhookId}".replace("{projectId}", projectId).replace("{webhookId}", webhookId)
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -817,6 +879,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
      * @param httpPass
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun updateWebhook(
 		projectId: String,
@@ -837,6 +900,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
             "httpUser" to httpUser,
             "httpPass" to httpPass
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -850,6 +914,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
      * @param webhookId
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun deleteWebhook(
 		projectId: String,
@@ -858,6 +923,7 @@ class ProjectsService(private val client: AppwriteClient) : BaseService(client) 
         val path = "/projects/{projectId}/webhooks/{webhookId}".replace("{projectId}", projectId).replace("{webhookId}", webhookId)
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )

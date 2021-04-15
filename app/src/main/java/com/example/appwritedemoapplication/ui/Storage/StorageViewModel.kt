@@ -2,10 +2,11 @@ package com.example.appwritedemoapplication.ui.Storage
 
 import android.content.ContentResolver
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.provider.OpenableColumns
 import android.text.Editable
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,6 +21,7 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 
+
 class StorageViewModel : ViewModel() {
 
     private val _error = MutableLiveData<Event<AppwriteException>>().apply {
@@ -31,6 +33,11 @@ class StorageViewModel : ViewModel() {
         value = null
     }
     val response: LiveData<Event<String>> = _response
+
+    private val _image = MutableLiveData<Event<Bitmap>>().apply {
+        value = null
+    }
+    val image: LiveData<Event<Bitmap>> = _image
 
     private val storageService by lazy {
         StorageService(Client.client)
@@ -110,6 +117,18 @@ class StorageViewModel : ViewModel() {
             returnCursor.close()
         }
         return name
+    }
+
+    fun downloadFile(fileId: Editable?) {
+        viewModelScope.launch {
+            try {
+                var response = storageService.getFileDownload(fileId.toString())
+                val image = BitmapFactory.decodeStream(response.body!!.byteStream())
+                _image.postValue(Event(image))
+            } catch (e: AppwriteException) {
+                _error.postValue(Event(e))
+            }
+        }
     }
 
 }

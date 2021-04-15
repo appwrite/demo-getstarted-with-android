@@ -1,8 +1,10 @@
 package io.appwrite.services
 
+import android.net.Uri
 import io.appwrite.AppwriteClient
 import io.appwrite.enums.OrderType
-import io.appwrite.exceptions.AppwriteException;
+import io.appwrite.exceptions.AppwriteException
+import okhttp3.Cookie
 import okhttp3.Response
 import java.io.File
 
@@ -22,6 +24,7 @@ class DatabaseService(private val client: AppwriteClient) : BaseService(client) 
      * @param orderType
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun listCollections(
 		search: String = "",
@@ -36,6 +39,7 @@ class DatabaseService(private val client: AppwriteClient) : BaseService(client) 
             "offset" to offset,
             "orderType" to orderType.name
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -53,6 +57,7 @@ class DatabaseService(private val client: AppwriteClient) : BaseService(client) 
      * @param rules
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun createCollection(
 		name: String,
@@ -67,6 +72,7 @@ class DatabaseService(private val client: AppwriteClient) : BaseService(client) 
             "write" to write,
             "rules" to rules
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -82,6 +88,7 @@ class DatabaseService(private val client: AppwriteClient) : BaseService(client) 
      * @param collectionId
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getCollection(
 		collectionId: String
@@ -89,6 +96,7 @@ class DatabaseService(private val client: AppwriteClient) : BaseService(client) 
         val path = "/database/collections/{collectionId}".replace("{collectionId}", collectionId)
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -107,6 +115,7 @@ class DatabaseService(private val client: AppwriteClient) : BaseService(client) 
      * @param rules
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun updateCollection(
 		collectionId: String,
@@ -122,6 +131,7 @@ class DatabaseService(private val client: AppwriteClient) : BaseService(client) 
             "write" to write,
             "rules" to rules
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -137,6 +147,7 @@ class DatabaseService(private val client: AppwriteClient) : BaseService(client) 
      * @param collectionId
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun deleteCollection(
 		collectionId: String
@@ -144,6 +155,7 @@ class DatabaseService(private val client: AppwriteClient) : BaseService(client) 
         val path = "/database/collections/{collectionId}".replace("{collectionId}", collectionId)
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -168,6 +180,7 @@ class DatabaseService(private val client: AppwriteClient) : BaseService(client) 
      * @param search
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun listDocuments(
 		collectionId: String,
@@ -189,6 +202,7 @@ class DatabaseService(private val client: AppwriteClient) : BaseService(client) 
             "orderCast" to orderCast,
             "search" to search
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -212,6 +226,7 @@ class DatabaseService(private val client: AppwriteClient) : BaseService(client) 
      * @param parentPropertyType
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun createDocument(
 		collectionId: String,
@@ -231,6 +246,7 @@ class DatabaseService(private val client: AppwriteClient) : BaseService(client) 
             "parentProperty" to parentProperty,
             "parentPropertyType" to parentPropertyType
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -247,6 +263,7 @@ class DatabaseService(private val client: AppwriteClient) : BaseService(client) 
      * @param documentId
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getDocument(
 		collectionId: String,
@@ -255,6 +272,7 @@ class DatabaseService(private val client: AppwriteClient) : BaseService(client) 
         val path = "/database/collections/{collectionId}/documents/{documentId}".replace("{collectionId}", collectionId).replace("{documentId}", documentId)
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -274,6 +292,7 @@ class DatabaseService(private val client: AppwriteClient) : BaseService(client) 
      * @param write
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun updateDocument(
 		collectionId: String,
@@ -288,6 +307,7 @@ class DatabaseService(private val client: AppwriteClient) : BaseService(client) 
             "read" to read,
             "write" to write
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -305,6 +325,7 @@ class DatabaseService(private val client: AppwriteClient) : BaseService(client) 
      * @param documentId
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun deleteDocument(
 		collectionId: String,
@@ -313,6 +334,7 @@ class DatabaseService(private val client: AppwriteClient) : BaseService(client) 
         val path = "/database/collections/{collectionId}/documents/{documentId}".replace("{collectionId}", collectionId).replace("{documentId}", documentId)
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )

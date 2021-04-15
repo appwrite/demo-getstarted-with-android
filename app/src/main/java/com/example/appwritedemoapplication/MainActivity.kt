@@ -15,6 +15,7 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.example.appwritedemoapplication.utils.Client
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,6 +36,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_account , R.id.nav_teams , R.id.nav_database) , drawerLayout)
         setupActionBarWithNavController(navController , appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        Client.create(applicationContext)
     }
 
     override fun onSupportNavigateUp(): Boolean {

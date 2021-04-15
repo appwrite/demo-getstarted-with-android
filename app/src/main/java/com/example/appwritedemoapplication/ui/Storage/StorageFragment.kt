@@ -59,6 +59,10 @@ class StorageFragment : Fragment() {
             viewModel.getFile(binding.fileId.text)
         }
 
+        binding.downloadFile.setOnClickListener{
+            viewModel.downloadFile(binding.fileId.text)
+        }
+
         binding.uploadFile.setOnClickListener {
             // Pass in the mime type you'd like to allow the user to select
             // as the input
@@ -93,6 +97,12 @@ class StorageFragment : Fragment() {
         viewModel.response.observe(viewLifecycleOwner, Observer { event ->
             event?.getContentIfNotHandled()?.let {
                 binding.responseTV.setText(it)
+            }
+        })
+
+        viewModel.image.observe(viewLifecycleOwner, Observer { event ->
+            event?.getContentIfNotHandled()?.let {
+                binding.imageView.setImageBitmap(it)
             }
         })
 

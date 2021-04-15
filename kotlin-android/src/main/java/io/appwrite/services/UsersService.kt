@@ -1,8 +1,10 @@
 package io.appwrite.services
 
+import android.net.Uri
 import io.appwrite.AppwriteClient
 import io.appwrite.enums.OrderType
-import io.appwrite.exceptions.AppwriteException;
+import io.appwrite.exceptions.AppwriteException
+import okhttp3.Cookie
 import okhttp3.Response
 import java.io.File
 
@@ -20,6 +22,7 @@ class UsersService(private val client: AppwriteClient) : BaseService(client) {
      * @param orderType
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun list(
 		search: String = "",
@@ -34,6 +37,7 @@ class UsersService(private val client: AppwriteClient) : BaseService(client) {
             "offset" to offset,
             "orderType" to orderType.name
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -50,6 +54,7 @@ class UsersService(private val client: AppwriteClient) : BaseService(client) {
      * @param name
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun create(
 		email: String,
@@ -62,6 +67,7 @@ class UsersService(private val client: AppwriteClient) : BaseService(client) {
             "password" to password,
             "name" to name
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -76,6 +82,7 @@ class UsersService(private val client: AppwriteClient) : BaseService(client) {
      * @param userId
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun get(
 		userId: String
@@ -83,6 +90,7 @@ class UsersService(private val client: AppwriteClient) : BaseService(client) {
         val path = "/users/{userId}".replace("{userId}", userId)
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -97,6 +105,7 @@ class UsersService(private val client: AppwriteClient) : BaseService(client) {
      * @param userId
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun deleteUser(
 		userId: String
@@ -104,6 +113,7 @@ class UsersService(private val client: AppwriteClient) : BaseService(client) {
         val path = "/users/{userId}".replace("{userId}", userId)
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -118,6 +128,7 @@ class UsersService(private val client: AppwriteClient) : BaseService(client) {
      * @param userId
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getLogs(
 		userId: String
@@ -125,6 +136,7 @@ class UsersService(private val client: AppwriteClient) : BaseService(client) {
         val path = "/users/{userId}/logs".replace("{userId}", userId)
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -139,6 +151,7 @@ class UsersService(private val client: AppwriteClient) : BaseService(client) {
      * @param userId
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getPrefs(
 		userId: String
@@ -146,6 +159,7 @@ class UsersService(private val client: AppwriteClient) : BaseService(client) {
         val path = "/users/{userId}/prefs".replace("{userId}", userId)
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -162,6 +176,7 @@ class UsersService(private val client: AppwriteClient) : BaseService(client) {
      * @param prefs
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun updatePrefs(
 		userId: String,
@@ -171,6 +186,7 @@ class UsersService(private val client: AppwriteClient) : BaseService(client) {
         val params = mapOf<String, Any?>(
             "prefs" to prefs
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -185,6 +201,7 @@ class UsersService(private val client: AppwriteClient) : BaseService(client) {
      * @param userId
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getSessions(
 		userId: String
@@ -192,6 +209,7 @@ class UsersService(private val client: AppwriteClient) : BaseService(client) {
         val path = "/users/{userId}/sessions".replace("{userId}", userId)
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -206,6 +224,7 @@ class UsersService(private val client: AppwriteClient) : BaseService(client) {
      * @param userId
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun deleteSessions(
 		userId: String
@@ -213,6 +232,7 @@ class UsersService(private val client: AppwriteClient) : BaseService(client) {
         val path = "/users/{userId}/sessions".replace("{userId}", userId)
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -228,6 +248,7 @@ class UsersService(private val client: AppwriteClient) : BaseService(client) {
      * @param sessionId
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun deleteSession(
 		userId: String,
@@ -236,6 +257,7 @@ class UsersService(private val client: AppwriteClient) : BaseService(client) {
         val path = "/users/{userId}/sessions/{sessionId}".replace("{userId}", userId).replace("{sessionId}", sessionId)
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -251,6 +273,7 @@ class UsersService(private val client: AppwriteClient) : BaseService(client) {
      * @param status
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun updateStatus(
 		userId: String,
@@ -260,6 +283,7 @@ class UsersService(private val client: AppwriteClient) : BaseService(client) {
         val params = mapOf<String, Any?>(
             "status" to status
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )

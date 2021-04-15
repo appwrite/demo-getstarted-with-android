@@ -1,12 +1,16 @@
 package io.appwrite.services
 
+import android.net.Uri
 import io.appwrite.AppwriteClient
+import io.appwrite.WebAuthComponent
+import androidx.activity.ComponentActivity
 import io.appwrite.enums.OrderType
-import io.appwrite.exceptions.AppwriteException;
+import io.appwrite.exceptions.AppwriteException
+import okhttp3.Cookie
 import okhttp3.Response
 import okhttp3.HttpUrl
+import okhttp3.HttpUrl.Companion.toHttpUrl
 import java.io.File
-import java.lang.Exception
 
 class AccountService(private val client: AppwriteClient) : BaseService(client) {
 
@@ -17,11 +21,13 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
      *
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun get(): Response {
         val path = "/account"
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -43,6 +49,7 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
      * @param name
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun create(
 		email: String,
@@ -55,6 +62,7 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
             "password" to password,
             "name" to name
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -72,11 +80,13 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
      *
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun delete(): Response {
         val path = "/account"
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -95,6 +105,7 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
      * @param password
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun updateEmail(
 		email: String,
@@ -105,6 +116,7 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
             "email" to email,
             "password" to password
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -119,11 +131,13 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
      *
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getLogs(): Response {
         val path = "/account/logs"
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -138,6 +152,7 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
      * @param name
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun updateName(
 		name: String
@@ -146,6 +161,7 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
         val params = mapOf<String, Any?>(
             "name" to name
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -162,6 +178,7 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
      * @param oldPassword
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun updatePassword(
 		password: String,
@@ -172,6 +189,7 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
             "password" to password,
             "oldPassword" to oldPassword
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -185,11 +203,13 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
      *
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getPrefs(): Response {
         val path = "/account/prefs"
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -205,6 +225,7 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
      * @param prefs
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun updatePrefs(
 		prefs: Any?
@@ -213,6 +234,7 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
         val params = mapOf<String, Any?>(
             "prefs" to prefs
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -234,6 +256,7 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
      * @param url
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun createRecovery(
 		email: String,
@@ -244,6 +267,7 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
             "email" to email,
             "url" to url
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -269,6 +293,7 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
      * @param passwordAgain
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun updateRecovery(
 		userId: String,
@@ -283,6 +308,7 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
             "password" to password,
             "passwordAgain" to passwordAgain
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -297,11 +323,13 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
      *
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun getSessions(): Response {
         val path = "/account/sessions"
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -318,6 +346,7 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
      * @param password
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun createSession(
 		email: String,
@@ -328,6 +357,7 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
             "email" to email,
             "password" to password
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -342,11 +372,13 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
      *
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun deleteSessions(): Response {
         val path = "/account/sessions"
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -367,13 +399,15 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
      * @param scopes
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun createOAuth2Session(
+		activity: ComponentActivity, 
 		provider: String,
 		success: String = "https://appwrite.io/auth/oauth2/success",
 		failure: String = "https://appwrite.io/auth/oauth2/failure",
 		scopes: List<Any>? = null
-	): Response {
+	) {
         val path = "/account/sessions/oauth2/{provider}".replace("{provider}", provider)
         val params = mapOf<String, Any?>(
             "success" to success,
@@ -382,10 +416,50 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
             "project" to client.config["project"],
             "key" to client.config["key"]
         )
-        val headers = mapOf(
-			"content-type" to "application/json"
-        )
-        return client.call("GET", path, headers, params)
+
+        val query = mutableListOf<String>()
+        params.forEach {
+            when (it.value) {
+                null -> {
+                    return@forEach
+                }
+                is List<*> -> {
+                    query.add("${it.key}[]=${it.value.toString()}")
+                }
+                else -> {
+                   query.add("${it.key}=${it.value.toString()}")
+                }
+            }
+        }
+
+        val url = Uri.parse("${client.endPoint}${path}?${query.joinToString("&")}")
+        val callbackUrlScheme = "callback-${client.config["project"]}"
+
+        WebAuthComponent.authenticate(activity, url, callbackUrlScheme) {
+            if (it.isFailure) {
+                throw it.exceptionOrNull()!!
+            }
+
+            val resultUrl = it.getOrNull()!!
+            val uri = Uri.parse(resultUrl)
+            val key = uri.getQueryParameter("key")
+            val secret = uri.getQueryParameter("secret")
+            if (key == null || secret == null) {
+                throw AppwriteException("Authentication cookie missing!")
+            }
+            val cookie = Cookie.Builder()
+                .name(key)
+                .value(secret)
+                .domain(Uri.parse(client.endPoint).host!!)
+                .httpOnly()
+                .build()
+                
+            client.cookieJar.saveFromResponse(
+                resultUrl.toHttpUrl(),
+                listOf(cookie)
+            )
+        }
+
     }
     
     /**
@@ -398,6 +472,7 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
      * @param sessionId
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun deleteSession(
 		sessionId: String
@@ -405,6 +480,7 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
         val path = "/account/sessions/{sessionId}".replace("{sessionId}", sessionId)
         val params = mapOf<String, Any?>(
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -432,6 +508,7 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
      * @param url
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun createVerification(
 		url: String
@@ -440,6 +517,7 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
         val params = mapOf<String, Any?>(
             "url" to url
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
@@ -458,6 +536,7 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
      * @param secret
      * @return The request response with a JSON body 
      */
+    @JvmOverloads
     @Throws(AppwriteException::class)
     suspend fun updateVerification(
 		userId: String,
@@ -468,6 +547,7 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
             "userId" to userId,
             "secret" to secret
         )
+
         val headers = mapOf(
 			"content-type" to "application/json"
         )
