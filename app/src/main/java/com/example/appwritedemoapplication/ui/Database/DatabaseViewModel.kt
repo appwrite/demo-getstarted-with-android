@@ -30,7 +30,7 @@ class DatabaseViewModel : ViewModel() {
         DatabaseService(client)
     }
 
-    private val COLLECTION_ID = "60632e9bb9631"
+    private val COLLECTION_ID = "6079170522932"
 
 
     fun createDocument(content: Editable? , isComplete: Boolean) {

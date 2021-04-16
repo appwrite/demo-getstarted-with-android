@@ -9,6 +9,6 @@ object Client {
     fun create(context: Context) {
         client = AppwriteClient(context)
                 .setEndpoint("https://demo.appwrite.io/v1")
-                .setProject("6062f9c2c09ce")
+                .setProject("6070749e6acd4")
     }
 }

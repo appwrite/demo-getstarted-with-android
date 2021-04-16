@@ -48,6 +48,10 @@ class AccountsFragment : Fragment() {
             viewModel.oAuthLogin(activity as ComponentActivity)
         }
 
+        binding.logout.setOnClickListener{
+            viewModel.logout()
+        }
+
         viewModel.error.observe(viewLifecycleOwner, Observer { event ->
             event?.getContentIfNotHandled()?.let { // Only proceed if the event has never been handled
                 Toast.makeText(requireContext(), it.message , Toast.LENGTH_SHORT).show()

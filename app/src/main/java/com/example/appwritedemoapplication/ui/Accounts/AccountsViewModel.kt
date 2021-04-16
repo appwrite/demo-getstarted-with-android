@@ -60,8 +60,10 @@ class AccountsViewModel : ViewModel() {
     fun oAuthLogin(activity: ComponentActivity) {
         viewModelScope.launch {
             try {
-                accountService.createOAuth2Session(activity, "facebook", "appwrite-callback-6062f9c2c09ce://demo.appwrite.io/auth/oauth2/success", "appwrite-callback-6062f9c2c09ce://demo.appwrite.io/auth/oauth2/failure")
+                accountService.createOAuth2Session(activity, "facebook", "appwrite-callback-6070749e6acd4://demo.appwrite.io/auth/oauth2/success", "appwrite-callback-6070749e6acd4://demo.appwrite.io/auth/oauth2/failure")
             } catch (e: Exception) {
+                _error.postValue(Event(e))
+            } catch (e: AppwriteException) {
                 _error.postValue(Event(e))
             }
         }
@@ -73,6 +75,19 @@ class AccountsViewModel : ViewModel() {
                 var response = accountService.get()
                 var json = response.body?.string() ?: ""
                 json = JSONObject(json).toString(2)
+                _response.postValue(Event(json))
+            } catch (e: AppwriteException) {
+                _error.postValue(Event(e))
+            }
+        }
+    }
+
+    fun logout() {
+        viewModelScope.launch {
+            try {
+                var response = accountService.deleteSession("current")
+                var json = response.body?.string()?.ifEmpty { "{}" }
+                json = JSONObject(json).toString(4)
                 _response.postValue(Event(json))
             } catch (e: AppwriteException) {
                 _error.postValue(Event(e))
