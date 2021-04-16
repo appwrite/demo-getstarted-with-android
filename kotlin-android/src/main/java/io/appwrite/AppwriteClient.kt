@@ -59,7 +59,7 @@ class AppwriteClient(
     init {
         headers = mutableMapOf(
             "content-type" to "application/json",
-            "x-sdk-version" to "appwrite:kotlin:0.0.1",            
+            "x-sdk-version" to "appwrite:kotlin:0.7.0",            
             "X-Appwrite-Response-Format" to "0.7.0"
         )
         config = mutableMapOf()

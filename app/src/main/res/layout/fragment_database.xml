@@ -16,7 +16,7 @@
             <EditText
                 android:id="@+id/responseTV"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="200dp"
                 android:enabled="true"
                 android:background="@null"
                 android:fadeScrollbars="false"

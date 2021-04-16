@@ -8,7 +8,7 @@ plugins {
 ext {
     set("packageGroup", "io.appwrite")
     set("packageArchive", "appwrite")
-    set("packageVersion", "0.0.1")
+    set("packageVersion", "0.7.0")
 }
 
 android {
