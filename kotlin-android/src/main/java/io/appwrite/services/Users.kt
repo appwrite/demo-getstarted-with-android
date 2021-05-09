@@ -1,14 +1,14 @@
 package io.appwrite.services
 
 import android.net.Uri
-import io.appwrite.AppwriteClient
+import io.appwrite.Client
 import io.appwrite.enums.OrderType
 import io.appwrite.exceptions.AppwriteException
 import okhttp3.Cookie
 import okhttp3.Response
 import java.io.File
 
-class UsersService(private val client: AppwriteClient) : BaseService(client) {
+class Users(private val client: Client) : BaseService(client) {
 
     /**
      * List Users
@@ -39,8 +39,9 @@ class UsersService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("GET", path, headers, params)
     }
     
@@ -69,8 +70,9 @@ class UsersService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("POST", path, headers, params)
     }
     
@@ -92,8 +94,9 @@ class UsersService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("GET", path, headers, params)
     }
     
@@ -115,8 +118,9 @@ class UsersService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("DELETE", path, headers, params)
     }
     
@@ -138,8 +142,9 @@ class UsersService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("GET", path, headers, params)
     }
     
@@ -161,8 +166,9 @@ class UsersService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("GET", path, headers, params)
     }
     
@@ -188,8 +194,9 @@ class UsersService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("PATCH", path, headers, params)
     }
     
@@ -211,8 +218,9 @@ class UsersService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("GET", path, headers, params)
     }
     
@@ -234,8 +242,9 @@ class UsersService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("DELETE", path, headers, params)
     }
     
@@ -259,8 +268,9 @@ class UsersService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("DELETE", path, headers, params)
     }
     
@@ -285,8 +295,9 @@ class UsersService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("PATCH", path, headers, params)
     }
     

@@ -10,8 +10,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.appwritedemoapplication.utils.Client
 import com.example.appwritedemoapplication.utils.Event
 import io.appwrite.exceptions.AppwriteException
-import io.appwrite.services.AvatarsService
-import io.appwrite.services.DatabaseService
+import io.appwrite.services.Avatars
 import kotlinx.coroutines.launch
 
 class AvatarsViewModel : ViewModel() {
@@ -26,7 +25,7 @@ class AvatarsViewModel : ViewModel() {
     val image: LiveData<Event<Bitmap>> = _image
 
     private val avatarsService by lazy {
-        AvatarsService(Client.client)
+        Avatars(Client.client)
     }
 
     fun getBrowser(code: Editable?) {

@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.appwritedemoapplication.utils.Client
 import com.example.appwritedemoapplication.utils.Event
 import io.appwrite.exceptions.AppwriteException
-import io.appwrite.services.TeamsService
+import io.appwrite.services.Teams
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 
@@ -25,7 +25,7 @@ class TeamsViewModel : ViewModel() {
     val response: LiveData<Event<String>> = _response
 
     private val teamsService by lazy {
-        TeamsService(Client.client)
+        Teams(Client.client)
     }
 
 

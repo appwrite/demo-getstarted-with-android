@@ -14,7 +14,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.appwritedemoapplication.utils.Client
 import com.example.appwritedemoapplication.utils.Event
 import io.appwrite.exceptions.AppwriteException
-import io.appwrite.services.StorageService
+import io.appwrite.services.Storage
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 import java.io.File
@@ -40,7 +40,7 @@ class StorageViewModel : ViewModel() {
     val image: LiveData<Event<Bitmap>> = _image
 
     private val storageService by lazy {
-        StorageService(Client.client)
+        Storage(Client.client)
     }
 
 

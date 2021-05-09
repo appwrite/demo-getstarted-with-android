@@ -1,7 +1,7 @@
 package io.appwrite.services
 
 import android.net.Uri
-import io.appwrite.AppwriteClient
+import io.appwrite.Client
 import io.appwrite.WebAuthComponent
 import androidx.activity.ComponentActivity
 import io.appwrite.enums.OrderType
@@ -12,7 +12,7 @@ import okhttp3.HttpUrl
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import java.io.File
 
-class AccountService(private val client: AppwriteClient) : BaseService(client) {
+class Account(private val client: Client) : BaseService(client) {
 
     /**
      * Get Account
@@ -29,8 +29,9 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("GET", path, headers, params)
     }
     
@@ -64,8 +65,9 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("POST", path, headers, params)
     }
     
@@ -88,8 +90,9 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("DELETE", path, headers, params)
     }
     
@@ -118,8 +121,9 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("PATCH", path, headers, params)
     }
     
@@ -139,8 +143,9 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("GET", path, headers, params)
     }
     
@@ -163,8 +168,9 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("PATCH", path, headers, params)
     }
     
@@ -191,8 +197,9 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("PATCH", path, headers, params)
     }
     
@@ -211,8 +218,9 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("GET", path, headers, params)
     }
     
@@ -236,8 +244,9 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("PATCH", path, headers, params)
     }
     
@@ -269,8 +278,9 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("POST", path, headers, params)
     }
     
@@ -310,8 +320,9 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("PUT", path, headers, params)
     }
     
@@ -331,8 +342,9 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("GET", path, headers, params)
     }
     
@@ -359,8 +371,9 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("POST", path, headers, params)
     }
     
@@ -380,8 +393,9 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("DELETE", path, headers, params)
     }
     
@@ -482,8 +496,9 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("DELETE", path, headers, params)
     }
     
@@ -519,8 +534,9 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("POST", path, headers, params)
     }
     
@@ -549,8 +565,9 @@ class AccountService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("PUT", path, headers, params)
     }
     

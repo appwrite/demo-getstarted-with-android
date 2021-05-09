@@ -1,14 +1,14 @@
 package io.appwrite.services
 
 import android.net.Uri
-import io.appwrite.AppwriteClient
+import io.appwrite.Client
 import io.appwrite.enums.OrderType
 import io.appwrite.exceptions.AppwriteException
 import okhttp3.Cookie
 import okhttp3.Response
 import java.io.File
 
-class HealthService(private val client: AppwriteClient) : BaseService(client) {
+class Health(private val client: Client) : BaseService(client) {
 
     /**
      * Get HTTP
@@ -25,8 +25,9 @@ class HealthService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("GET", path, headers, params)
     }
     
@@ -45,8 +46,9 @@ class HealthService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("GET", path, headers, params)
     }
     
@@ -66,8 +68,9 @@ class HealthService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("GET", path, headers, params)
     }
     
@@ -86,8 +89,9 @@ class HealthService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("GET", path, headers, params)
     }
     
@@ -108,8 +112,9 @@ class HealthService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("GET", path, headers, params)
     }
     
@@ -126,8 +131,9 @@ class HealthService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("GET", path, headers, params)
     }
     
@@ -147,8 +153,9 @@ class HealthService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("GET", path, headers, params)
     }
     
@@ -168,8 +175,9 @@ class HealthService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("GET", path, headers, params)
     }
     
@@ -189,8 +197,9 @@ class HealthService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("GET", path, headers, params)
     }
     
@@ -210,8 +219,9 @@ class HealthService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("GET", path, headers, params)
     }
     
@@ -230,8 +240,9 @@ class HealthService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("GET", path, headers, params)
     }
     
@@ -256,8 +267,9 @@ class HealthService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("GET", path, headers, params)
     }
     

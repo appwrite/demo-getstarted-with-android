@@ -1,14 +1,14 @@
 package io.appwrite.services
 
 import android.net.Uri
-import io.appwrite.AppwriteClient
+import io.appwrite.Client
 import io.appwrite.enums.OrderType
 import io.appwrite.exceptions.AppwriteException
 import okhttp3.Cookie
 import okhttp3.Response
 import java.io.File
 
-class LocaleService(private val client: AppwriteClient) : BaseService(client) {
+class Locale(private val client: Client) : BaseService(client) {
 
     /**
      * Get User Locale
@@ -30,8 +30,9 @@ class LocaleService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("GET", path, headers, params)
     }
     
@@ -51,8 +52,9 @@ class LocaleService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("GET", path, headers, params)
     }
     
@@ -72,8 +74,9 @@ class LocaleService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("GET", path, headers, params)
     }
     
@@ -93,8 +96,9 @@ class LocaleService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("GET", path, headers, params)
     }
     
@@ -114,8 +118,9 @@ class LocaleService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("GET", path, headers, params)
     }
     
@@ -136,8 +141,9 @@ class LocaleService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("GET", path, headers, params)
     }
     
@@ -157,8 +163,9 @@ class LocaleService(private val client: AppwriteClient) : BaseService(client) {
         )
 
         val headers = mapOf(
-			"content-type" to "application/json"
+            "content-type" to "application/json"
         )
+
         return client.call("GET", path, headers, params)
     }
     

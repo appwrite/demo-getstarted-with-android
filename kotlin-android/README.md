@@ -1,13 +1,13 @@
-# Appwrite NAME SDK
+# Appwrite Kotlin SDK
 
-![License](https://img.shields.io/github/license/appwrite/kotlin-sdk.svg?style=flat-square)
+![License](https://img.shields.io/github/license/appwrite/sdk-for-kotlin.svg?style=flat-square)
 ![Version](https://img.shields.io/badge/api%20version-0.7.0-blue.svg?style=flat-square)
 [![Twitter Account](https://img.shields.io/twitter/follow/appwrite_io?color=00acee&label=twitter&style=flat-square)](https://twitter.com/appwrite_io)
 [![Discord](https://img.shields.io/discord/564160730845151244?label=discord&style=flat-square)](https://appwrite.io/discord)
 
 **This SDK is compatible with Appwrite server version 0.7.x. For older versions, please check previous releases.**
 
-Repo description goes here
+Appwrite is an open-source backend as a service server that abstract and simplify complex and repetitive development tasks behind a very simple to use REST API. Appwrite aims to help you develop your apps faster and in a more secure way. Use the Flutter SDK to integrate your app with the Appwrite server to easily start interacting with all of Appwrite backend APIs and tools. For full API documentation and tutorials go to https://appwrite.io/docs
 
 ![Appwrite](https://appwrite.io/v1/images/console.png)
 
@@ -19,7 +19,7 @@ Add this to your root level `build.gradle(.kts)` file:
 ```groovy
 repositories {
     maven { 
-        url = "https://maven.pkg.github.com/appwrite/kotlin-sdk"
+        url = "https://maven.pkg.github.com/appwrite/sdk-for-kotlin"
         credentials {
            username = GITHUB_USER
            password = GITHUB_TOKEN
@@ -124,7 +124,7 @@ val user = accountService.create(
 ```
 
 ### Learn more
-You can use followng resources to learn more and get help
+You can use following resources to learn more and get help
 - 📜 [Appwrite Docs](https://appwrite.io/docs)
 - 💬 [Discord Community](https://appwrite.io/discord)
         

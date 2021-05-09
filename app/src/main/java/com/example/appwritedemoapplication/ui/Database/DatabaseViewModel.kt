@@ -9,8 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.appwritedemoapplication.utils.Client.client
 import com.example.appwritedemoapplication.utils.Event
 import io.appwrite.exceptions.AppwriteException
-import io.appwrite.services.AccountService
-import io.appwrite.services.DatabaseService
+import io.appwrite.services.Database
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 
@@ -27,7 +26,7 @@ class DatabaseViewModel : ViewModel() {
     val response: LiveData<Event<String>> = _response
 
     private val databaseService by lazy {
-        DatabaseService(client)
+        Database(client)
     }
 
     private val COLLECTION_ID = "6079170522932"

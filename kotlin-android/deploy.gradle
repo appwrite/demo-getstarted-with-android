@@ -5,9 +5,9 @@ def artifactModule = project.properties["packageArchive"] as String
 def artifactVersion = project.properties["packageVersion"] as String
 
 def pomUrl = ""
-def pomScmUrl = "https://github.com/appwrite/kotlin-sdk"
-def pomIssueUrl = "https://github.com/appwrite/kotlin-sdk/issues"
-def pomDesc = "Repo description goes here"
+def pomScmUrl = "https://github.com/appwrite/sdk-for-kotlin"
+def pomIssueUrl = "https://github.com/appwrite/sdk-for-kotlin/issues"
+def pomDesc = "Appwrite is an open-source backend as a service server that abstract and simplify complex and repetitive development tasks behind a very simple to use REST API. Appwrite aims to help you develop your apps faster and in a more secure way. Use the Flutter SDK to integrate your app with the Appwrite server to easily start interacting with all of Appwrite backend APIs and tools. For full API documentation and tutorials go to https://appwrite.io/docs"
 
 def pomLicenseName = "GPL-3.0"
 def pomLicenseUrl = "https://opensource.org/licenses/GPL-3.0"
@@ -16,10 +16,10 @@ def pomDeveloperId = ""
 def pomDeveloperName = "appwrite"
 def pomDeveloperEmail = ""
 
-def githubUrl = "https://github.com/appwrite/kotlin-sdk"
-def githubRepository = "kotlin-sdk"
+def githubUrl = "https://github.com/appwrite/sdk-for-kotlin"
+def githubRepository = "sdk-for-kotlin"
 def githubReadme = "README.md"
-def githubScmConnection = "scm:git:git://github.com/appwrite/kotlin-sdk.git"
+def githubScmConnection = "scm:git:git://github.com/appwrite/sdk-for-kotlin.git"
 
 tasks.register("sourcesJar", Jar) {
     archiveClassifier.set("sources")

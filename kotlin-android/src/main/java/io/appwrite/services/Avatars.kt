@@ -1,7 +1,7 @@
 package io.appwrite.services
 
 import android.net.Uri
-import io.appwrite.AppwriteClient
+import io.appwrite.Client
 import io.appwrite.enums.OrderType
 import io.appwrite.exceptions.AppwriteException
 import okhttp3.Cookie
@@ -10,7 +10,7 @@ import okhttp3.HttpUrl
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import java.io.File
 
-class AvatarsService(private val client: AppwriteClient) : BaseService(client) {
+class Avatars(private val client: Client) : BaseService(client) {
 
     /**
      * Get Browser Icon

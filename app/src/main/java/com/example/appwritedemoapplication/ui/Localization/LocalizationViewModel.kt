@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.appwritedemoapplication.utils.Client
 import com.example.appwritedemoapplication.utils.Event
 import io.appwrite.exceptions.AppwriteException
-import io.appwrite.services.LocaleService
+import io.appwrite.services.Locale
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 
@@ -24,7 +24,7 @@ class LocalizationViewModel : ViewModel() {
     val response: LiveData<Event<String>> = _response
 
     private val localizationService by lazy {
-        LocaleService(Client.client)
+        Locale(Client.client)
     }
 
     fun getLocale() {

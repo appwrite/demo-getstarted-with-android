@@ -34,7 +34,7 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
-class AppwriteClient(
+class Client(
     context: Context,
     var endPoint: String = "https://appwrite.io/v1",
     private var selfSigned: Boolean = false
@@ -60,7 +60,7 @@ class AppwriteClient(
         headers = mutableMapOf(
             "content-type" to "application/json",
             "x-sdk-version" to "appwrite:kotlin:0.7.0",            
-            "X-Appwrite-Response-Format" to "0.7.0"
+            "x-appwrite-response-format" to "0.7.0"
         )
         config = mutableMapOf()
         
@@ -68,32 +68,32 @@ class AppwriteClient(
     }
 
     /// Your project ID
-    fun setProject(value: String): AppwriteClient {
+    fun setProject(value: String): Client {
         config["project"] = value
         addHeader("X-Appwrite-Project", value)
         return this
     }
 
     /// Your secret API key
-    fun setKey(value: String): AppwriteClient {
+    fun setKey(value: String): Client {
         config["key"] = value
         addHeader("X-Appwrite-Key", value)
         return this
     }
 
-    fun setLocale(value: String): AppwriteClient {
+    fun setLocale(value: String): Client {
         config["locale"] = value
         addHeader("X-Appwrite-Locale", value)
         return this
     }
 
-    fun setMode(value: String): AppwriteClient {
+    fun setMode(value: String): Client {
         config["mode"] = value
         addHeader("X-Appwrite-Mode", value)
         return this
     }
 
-    fun setSelfSigned(status: Boolean): AppwriteClient {
+    fun setSelfSigned(status: Boolean): Client {
         selfSigned = status
 
         val builder = OkHttpClient()
@@ -136,12 +136,12 @@ class AppwriteClient(
         return this
     }
 
-    fun setEndpoint(endPoint: String): AppwriteClient {
+    fun setEndpoint(endPoint: String): Client {
         this.endPoint = endPoint
         return this
     }
 
-    fun addHeader(key: String, value: String): AppwriteClient {
+    fun addHeader(key: String, value: String): Client {
         headers[key] = value
         return this
     }

@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.appwritedemoapplication.utils.Client
 import com.example.appwritedemoapplication.utils.Event
 import io.appwrite.exceptions.AppwriteException
-import io.appwrite.services.FunctionsService
+import io.appwrite.services.Functions
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 
@@ -25,7 +25,7 @@ class FunctionsViewModel : ViewModel() {
     val response: LiveData<Event<String>> = _response
 
     private val functionsService by lazy {
-        FunctionsService(Client.client)
+        Functions(Client.client)
     }
 
 
