@@ -1,3 +1,2 @@
-include ':kotlin-android'
 include ':app'
 rootProject.name = "Appwrite Demo Application"

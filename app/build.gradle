@@ -56,7 +56,7 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation project(path: ':kotlin-android')
+    implementation 'io.appwrite:sdk-for-android:0.0.0-SNAPSHOT'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

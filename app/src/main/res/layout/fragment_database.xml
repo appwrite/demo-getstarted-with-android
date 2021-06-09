@@ -40,7 +40,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/responseTV" />
 
-            <RadioButton
+            <CheckBox
                 android:id="@+id/isComplete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
