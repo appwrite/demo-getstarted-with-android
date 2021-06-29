@@ -1,4 +1,4 @@
-# Get Started With Android 🤖
+# 🤖 Get Started With Android 
 
 A Simple Android App to get started with Appwrite's Android SDK
 
