@@ -1,34 +1,13 @@
-<h1 align="center">Appwrite Android Demo 🤖</h1>
-<p align = center>
-    <img alt="Project Logo" src="https://user-images.githubusercontent.com/20852629/121350853-c4b5a900-c948-11eb-8a3b-300eae63ae26.png" target="_blank" />
-</p>
+# Get Started With Android 🤖
 
-
-<p align="center">
-
-<img alt="Android" src="https://img.shields.io/badge/android-ready-brightgreen?style=for-the-badge&logo=android" target="_blank" />
-
-  <img alt="Latest Commit" src="https://img.shields.io/github/last-commit/christyjacob4/appwrite-android-demo?style=for-the-badge&logo=git" target="_blank" />
-
-  <img alt="Version" src="https://img.shields.io/badge/version-1.0-success?style=for-the-badge&logo=coderwall" target="_blank" />
-
-  <a href="https://github.com/christyjacob4/appwrite-android-demo/blob/master/LICENSE">
-    <img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-success.svg?style=for-the-badge&logo=gitter" target="_blank" />
-  </a>
-
-  <a href="https://twitter.com/christyjacob4">
-    <img alt="Twitter: Christy Jacob" src="https://img.shields.io/twitter/follow/christyjacob4?label=Follow%20%40christyjacob4&style=for-the-badge&logo=twitter" target="_blank" />
-  </a>
-</p>
-
-<h2 align="center"> A Simple Android App to interact with Appwrite's Android SDK</h2><br/>
+A Simple Android App to get started with Appwrite's Android SDK
 
 ## 🚀 Usage
 
 - Clone the repository
 
 ```sh
-git clone https://github.com/christyjacob4/appwrite-android-demo
+git clone https://github.com/appwrite/demo-getstarted-with-android
 ```
 
 - Import into Android Studio and run!
@@ -83,26 +62,8 @@ app/src/main/java/com/example/appwritedemoapplication/
 ## 🍻 Contributing
 
 Contributions, issues and feature requests are welcome.<br />
-Feel free to check [issues page](https://github.com/christyjacob4/appwrite-android-demo) if you want to contribute.
+Feel free to check [issues page](https://github.com/appwrite/demo-getstarted-with-android/issues) if you want to contribute.
 
-## 👤 Author
 
-**Christy Jacob**
-
-- Twitter: [@christyjacob4](https://twitter.com/christyjacob4)
-- Github: [@christyjacob4](https://github.com/christyjacob4)
-
-## 🤝 Acknowledgements
-
-- Icons by [Flaticon](https://www.flaticon.com/)
-
-## 🙌 Show your support
-
-Drop a ⭐️ if this project helped you!
-
-## 📝 License
-
-Copyright © 2021 [Christy Jacob](https://github.com/christyjacob4).<br />
-This project is [MIT](./LICENSE.md) licensed.
-
----
+## 🤕 Support 
+If you get stuck anywhere, hop onto one of our [support channels in discord](https://appwrite.io/discord) and we'd be delighted to help you out 🤝
