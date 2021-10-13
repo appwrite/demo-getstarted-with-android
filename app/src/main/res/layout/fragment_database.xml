@@ -34,6 +34,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:hint="Add Todo"
+                android:padding="10dp"
+                android:background="@drawable/text_view_background"
                 app:layout_constraintEnd_toStartOf="@+id/isComplete"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -76,6 +78,8 @@
                 android:id="@+id/documentId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="@drawable/text_view_background"
                 android:hint="Document Id"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/createDocument" />

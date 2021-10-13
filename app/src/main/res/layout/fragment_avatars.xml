@@ -26,7 +26,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:background="@drawable/text_view_background"
                 android:hint="Code"
+                android:padding="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/imageView" />
@@ -37,8 +39,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="Get Credit\nCard Icon"
-                app:layout_constraintEnd_toStartOf="@+id/getCountryCode"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/code" />
@@ -48,9 +48,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Get Country \nFlag"
+                app:layout_constraintBottom_toBottomOf="@+id/getCreditCard"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/getCreditCard"
                 app:layout_constraintTop_toTopOf="@id/getCreditCard" />
 
             <Button
@@ -59,21 +58,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="Get Browser\nIcon"
-                app:layout_constraintEnd_toStartOf="@+id/getQrCode"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/getCreditCard" />
+                app:layout_constraintTop_toBottomOf="@+id/getCreditCard" />
 
             <Button
                 android:id="@+id/getQrCode"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:text="Get QR Code"
+                app:layout_constraintBottom_toBottomOf="@+id/getBrowser"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/getBrowser"
-                app:layout_constraintTop_toTopOf="@id/getBrowser" />
+                app:layout_constraintTop_toTopOf="@+id/getBrowser" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

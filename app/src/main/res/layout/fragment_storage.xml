@@ -55,6 +55,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="File Id"
+                android:layout_marginTop="16dp"
+                android:padding="10dp"
+                android:background="@drawable/text_view_background"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/uploadFile" />
 
