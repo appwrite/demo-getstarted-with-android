@@ -15,4 +15,12 @@
     <string name="menu_localization">Localization</string>
     <string name="menu_avatars">Avatars</string>
 
+    <string name="appwrite_host">[HOST]</string>
+    <string name="appwrite_endpoint">https://[HOST]/v1</string>
+    <string name="appwrite_project">[PROJECT]</string>
+    <string name="appwrite_database">[DATABASE]</string>
+    <string name="appwrite_collection">[COLLECTION]</string>
+    <string name="appwrite_storage">[BUCKET]</string>
+    <string name="appwrite_callback">appwrite-callback-[PROJECT]</string>
+
 </resources>
