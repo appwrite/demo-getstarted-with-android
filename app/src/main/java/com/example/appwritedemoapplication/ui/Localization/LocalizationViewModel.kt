@@ -10,7 +10,6 @@ import io.appwrite.exceptions.AppwriteException
 import io.appwrite.extensions.toJson
 import io.appwrite.services.Locale
 import kotlinx.coroutines.launch
-import org.json.JSONObject
 
 class LocalizationViewModel : ViewModel() {
 

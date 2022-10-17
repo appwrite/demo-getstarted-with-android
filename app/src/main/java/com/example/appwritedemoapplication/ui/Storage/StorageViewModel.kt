@@ -11,12 +11,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.appwritedemoapplication.AppwriteDemoApp
-import com.example.appwritedemoapplication.R
+import com.example.appwritedemoapplication.Config
 import com.example.appwritedemoapplication.utils.Client
 import com.example.appwritedemoapplication.utils.Event
 import io.appwrite.ID
 import io.appwrite.Permission
+import io.appwrite.Role
 import io.appwrite.exceptions.AppwriteException
 import io.appwrite.extensions.toJson
 import io.appwrite.models.InputFile
@@ -49,13 +49,11 @@ class StorageViewModel : ViewModel() {
         Storage(Client.client)
     }
 
-    private val STORAGE_ID = AppwriteDemoApp.appResources!!.getString(R.string.appwrite_storage)
-
 
     fun getFile(id: Editable) {
         viewModelScope.launch {
             try {
-                val response = storageService.getFile(STORAGE_ID, id.toString())
+                val response = storageService.getFile(Config.STORAGE, id.toString())
                 val json = response.toJson()
                 _response.postValue(Event(json))
             } catch (e: AppwriteException) {
@@ -68,7 +66,7 @@ class StorageViewModel : ViewModel() {
     fun deleteFile(id: Editable?) {
         viewModelScope.launch {
             try {
-                val response = storageService.deleteFile(STORAGE_ID, id.toString())
+                val response = storageService.deleteFile(Config.STORAGE, id.toString())
                 val json = response.toJson().ifEmpty { "{}" }
                 _response.postValue(Event(json))
             } catch (e: AppwriteException) {
@@ -80,7 +78,7 @@ class StorageViewModel : ViewModel() {
     fun getFiles() {
         viewModelScope.launch {
             try {
-                val response = storageService.listFiles(STORAGE_ID)
+                val response = storageService.listFiles(Config.STORAGE)
                 val json = response.toJson()
                 _response.postValue(Event(json))
             } catch (e: AppwriteException) {
@@ -99,10 +97,11 @@ class StorageViewModel : ViewModel() {
                     try {
                         val file = File(context.cacheDir, "temp")
                         it.copyTo(FileOutputStream(file))
-                        val response = storageService.createFile(STORAGE_ID,
+                        val response = storageService.createFile(
+                            Config.STORAGE,
                             ID.unique(),
                             InputFile.fromFile(file),
-                            listOf(Permission.read("any")))
+                            listOf(Permission.read(Role.any())))
                         val json = response.toJson()
                         _response.postValue(Event(json))
                     } catch (e: AppwriteException) {
@@ -132,7 +131,7 @@ class StorageViewModel : ViewModel() {
     fun downloadFile(fileId: Editable?) {
         viewModelScope.launch {
             try {
-                val response = storageService.getFileDownload(STORAGE_ID, fileId.toString())
+                val response = storageService.getFileDownload(Config.STORAGE, fileId.toString())
                 val image = BitmapFactory.decodeByteArray(response, 0, response.size)
                 _image.postValue(Event(image))
             } catch (e: AppwriteException) {

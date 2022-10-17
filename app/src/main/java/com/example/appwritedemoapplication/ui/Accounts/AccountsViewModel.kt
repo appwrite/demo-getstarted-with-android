@@ -6,8 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.appwritedemoapplication.AppwriteDemoApp
-import com.example.appwritedemoapplication.R
+import com.example.appwritedemoapplication.Config
 import com.example.appwritedemoapplication.utils.Client.client
 import com.example.appwritedemoapplication.utils.Event
 import io.appwrite.ID
@@ -32,9 +31,6 @@ class AccountsViewModel : ViewModel() {
     private val accountService by lazy {
         Account(client)
     }
-
-    private val CALLBACK_ID = AppwriteDemoApp.appResources!!.getString(R.string.appwrite_callback)
-    private val HOST = AppwriteDemoApp.appResources!!.getString(R.string.appwrite_host)
 
     fun onLogin(email: Editable , password : Editable) {
         viewModelScope.launch {
@@ -65,7 +61,7 @@ class AccountsViewModel : ViewModel() {
     fun oAuthLogin(activity: ComponentActivity) {
         viewModelScope.launch {
             try {
-                accountService.createOAuth2Session(activity, "facebook", "$CALLBACK_ID://$HOST/auth/oauth2/success", "$CALLBACK_ID://$HOST/auth/oauth2/failure")
+                accountService.createOAuth2Session(activity, "facebook", "${Config.CALLBACK}://${Config.HOST}/auth/oauth2/success", "${Config.CALLBACK}://${Config.HOST}/auth/oauth2/failure")
             } catch (e: Exception) {
                 _error.postValue(Event(e))
             } catch (e: AppwriteException) {

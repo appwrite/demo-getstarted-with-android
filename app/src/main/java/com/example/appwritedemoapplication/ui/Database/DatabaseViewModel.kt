@@ -1,17 +1,16 @@
 package com.example.appwritedemoapplication.ui.Database
 
 import android.text.Editable
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.appwritedemoapplication.AppwriteDemoApp
-import com.example.appwritedemoapplication.R
+import com.example.appwritedemoapplication.Config
 import com.example.appwritedemoapplication.utils.Client.client
 import com.example.appwritedemoapplication.utils.Event
 import io.appwrite.ID
 import io.appwrite.Permission
+import io.appwrite.Role
 import io.appwrite.exceptions.AppwriteException
 import io.appwrite.extensions.toJson
 import io.appwrite.services.Databases
@@ -33,19 +32,16 @@ class DatabaseViewModel : ViewModel() {
         Databases(client)
     }
 
-    private val COLLECTION_ID = AppwriteDemoApp.appResources!!.getString(R.string.appwrite_collection)
-    private val DATABASE_ID = AppwriteDemoApp.appResources!!.getString(R.string.appwrite_database)
-
 
     fun createDocument(content: Editable? , isComplete: Boolean) {
         val data = mapOf(
                 "content" to content.toString(),
                 "isComplete" to isComplete
         )
-        val read = listOf(Permission.read("any"))
+        val permissions = listOf(Permission.read(Role.any()))
         viewModelScope.launch {
             try {
-                val response = databaseService.createDocument(DATABASE_ID, COLLECTION_ID, ID.unique(), data, read)
+                val response = databaseService.createDocument(Config.DATABASE, Config.COLLECTION, ID.unique(), data, permissions)
                 val json = response.toJson()
                 _response.postValue(Event(json))
             } catch (e: AppwriteException) {
@@ -57,7 +53,7 @@ class DatabaseViewModel : ViewModel() {
     fun getDocuments() {
         viewModelScope.launch {
             try {
-                val response = databaseService.listDocuments(DATABASE_ID, COLLECTION_ID)
+                val response = databaseService.listDocuments(Config.DATABASE, Config.COLLECTION)
                 val json = response.toJson()
                 _response.postValue(Event(json))
             } catch (e: AppwriteException) {
@@ -69,7 +65,7 @@ class DatabaseViewModel : ViewModel() {
     fun getDocument(id: Editable?) {
         viewModelScope.launch {
             try {
-                val response = databaseService.getDocument(DATABASE_ID, COLLECTION_ID, id.toString())
+                val response = databaseService.getDocument(Config.DATABASE, Config.COLLECTION, id.toString())
                 val json = response.toJson()
                 _response.postValue(Event(json))
             } catch (e: AppwriteException) {
@@ -81,7 +77,7 @@ class DatabaseViewModel : ViewModel() {
     fun deleteDocument(id: Editable?) {
         viewModelScope.launch {
             try {
-                val response = databaseService.deleteDocument(DATABASE_ID, COLLECTION_ID, id.toString())
+                val response = databaseService.deleteDocument(Config.DATABASE, Config.COLLECTION, id.toString())
                 val json = response.toJson().ifEmpty { "{}" }
                 _response.postValue(Event(json))
             } catch (e: AppwriteException) {

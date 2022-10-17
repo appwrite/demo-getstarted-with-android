@@ -14,14 +14,19 @@ git clone https://github.com/appwrite/demo-getstarted-with-android
 
 ## 📁 Folder Structure
 
-Each folder under the `ui` directory has interactions with one particular API of Appwrite. The `Accounts` directory contains interactions with Appwrite's Account's API and so on.
+Each folder under the `ui` directory has interactions with one particular API of Appwrite.
+
+The `Accounts` directory contains interactions with Appwrite's Account's API and so on.
 
 `Client.kt` contains a singleton object that initializes the Appwrite client.
+
+`Config.kt` contains a singleton object that contains the Appwrite project's configuration.
 
 ```sh
 ➜  appwrite-android-demo git:(main) ✗ tree app/src/main/java/com/example/appwritedemoapplication/
 app/src/main/java/com/example/appwritedemoapplication/
 ├── MainActivity.kt
+├── Config.kt
 ├── ui
 │   ├── Accounts
 │   │   ├── AccountsFragment.kt

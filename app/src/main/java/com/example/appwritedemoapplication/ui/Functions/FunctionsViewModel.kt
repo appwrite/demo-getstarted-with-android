@@ -11,7 +11,6 @@ import io.appwrite.exceptions.AppwriteException
 import io.appwrite.extensions.toJson
 import io.appwrite.services.Functions
 import kotlinx.coroutines.launch
-import org.json.JSONObject
 
 class FunctionsViewModel : ViewModel() {
 
@@ -58,7 +57,7 @@ class FunctionsViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val response = functionsService.getExecution(functionId.toString(), executionId.toString())
-                val json = response.toJson() ?: ""
+                val json = response.toJson()
                 _response.postValue(Event(json))
             } catch (e: AppwriteException) {
                 _error.postValue(Event(e))

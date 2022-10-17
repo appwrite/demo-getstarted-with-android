@@ -5,8 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.appwritedemoapplication.AppwriteDemoApp
-import com.example.appwritedemoapplication.R
 import com.example.appwritedemoapplication.utils.Client
 import com.example.appwritedemoapplication.utils.Event
 import io.appwrite.ID
@@ -14,7 +12,6 @@ import io.appwrite.exceptions.AppwriteException
 import io.appwrite.extensions.toJson
 import io.appwrite.services.Teams
 import kotlinx.coroutines.launch
-import org.json.JSONObject
 
 class TeamsViewModel : ViewModel() {
 
