@@ -1,11 +1,11 @@
 package com.example.appwritedemoapplication
 
 /**
- * Config file for the AppWrite demo application
+ * Config file for the Appwrite demo application
  */
 object Config {
 
-    // Change below values to match your AppWrite project
+    // Change below values to match your Appwrite project
     const val HOST = "[HOST]"
     const val PROJECT = "[PROJECT]"
     const val DATABASE = "[DATABASE]"

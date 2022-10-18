@@ -95,7 +95,7 @@ class StorageViewModel : ViewModel() {
                 if (it == null) return@use
                 withContext(Dispatchers.IO) {
                     try {
-                        val file = File(context.cacheDir, "temp")
+                        val file = File(context.cacheDir, context.contentResolver.getFileName(uri))
                         it.copyTo(FileOutputStream(file))
                         val response = storageService.createFile(
                             Config.STORAGE,
