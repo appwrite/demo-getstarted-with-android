@@ -1,16 +1,19 @@
 package com.example.appwritedemoapplication.ui.Accounts
 
-import android.app.Activity
-import android.content.Context
 import android.text.Editable
 import androidx.activity.ComponentActivity
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.appwritedemoapplication.Config
 import com.example.appwritedemoapplication.utils.Client.client
 import com.example.appwritedemoapplication.utils.Event
+import io.appwrite.ID
 import io.appwrite.exceptions.AppwriteException
+import io.appwrite.extensions.toJson
 import io.appwrite.services.Account
 import kotlinx.coroutines.launch
-import org.json.JSONObject
 
 
 class AccountsViewModel : ViewModel() {
@@ -32,9 +35,8 @@ class AccountsViewModel : ViewModel() {
     fun onLogin(email: Editable , password : Editable) {
         viewModelScope.launch {
             try {
-                var response = accountService.createSession(email.toString(), password.toString())
-                var json = response.body?.string() ?: ""
-                json = JSONObject(json).toString(8)
+                val response = accountService.createEmailSession(email.toString(), password.toString())
+                val json = response.toJson()
                 _response.postValue(Event(json))
             } catch (e: AppwriteException) {
                 _error.postValue(Event(e))
@@ -46,9 +48,8 @@ class AccountsViewModel : ViewModel() {
     fun onSignup(email: Editable , password : Editable, name: Editable) {
         viewModelScope.launch {
             try {
-                var response = accountService.create(email.toString(), password.toString(), name.toString())
-                var json = response.body?.string() ?: ""
-                json = JSONObject(json).toString(2)
+                val response = accountService.create(ID.unique(), email.toString(), password.toString(), name.toString())
+                val json = response.toJson()
                 _response.postValue(Event(json))
             } catch (e: AppwriteException) {
                 _error.postValue(Event(e))
@@ -60,7 +61,7 @@ class AccountsViewModel : ViewModel() {
     fun oAuthLogin(activity: ComponentActivity) {
         viewModelScope.launch {
             try {
-                accountService.createOAuth2Session(activity, "facebook", "appwrite-callback-6070749e6acd4://demo.appwrite.io/auth/oauth2/success", "appwrite-callback-6070749e6acd4://demo.appwrite.io/auth/oauth2/failure")
+                accountService.createOAuth2Session(activity, "facebook", "${Config.CALLBACK}://${Config.HOST}/auth/oauth2/success", "${Config.CALLBACK}://${Config.HOST}/auth/oauth2/failure")
             } catch (e: Exception) {
                 _error.postValue(Event(e))
             } catch (e: AppwriteException) {
@@ -72,9 +73,8 @@ class AccountsViewModel : ViewModel() {
     fun getUser() {
         viewModelScope.launch {
             try {
-                var response = accountService.get()
-                var json = response.body?.string() ?: ""
-                json = JSONObject(json).toString(2)
+                val response = accountService.get()
+                val json = response.toJson()
                 _response.postValue(Event(json))
             } catch (e: AppwriteException) {
                 _error.postValue(Event(e))
@@ -85,9 +85,8 @@ class AccountsViewModel : ViewModel() {
     fun logout() {
         viewModelScope.launch {
             try {
-                var response = accountService.deleteSession("current")
-                var json = response.body?.string()?.ifEmpty { "{}" }
-                json = JSONObject(json).toString(4)
+                val response = accountService.deleteSession("current")
+                val json = response.toJson().ifEmpty { "{}" }
                 _response.postValue(Event(json))
             } catch (e: AppwriteException) {
                 _error.postValue(Event(e))

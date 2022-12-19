@@ -7,10 +7,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.appwritedemoapplication.utils.Client
 import com.example.appwritedemoapplication.utils.Event
+import io.appwrite.ID
 import io.appwrite.exceptions.AppwriteException
+import io.appwrite.extensions.toJson
 import io.appwrite.services.Teams
 import kotlinx.coroutines.launch
-import org.json.JSONObject
 
 class TeamsViewModel : ViewModel() {
 
@@ -32,9 +33,8 @@ class TeamsViewModel : ViewModel() {
     fun createTeam(name: Editable?) {
         viewModelScope.launch {
             try {
-                var response = teamsService.create(name.toString())
-                var json = response.body?.string() ?: ""
-                json = JSONObject(json).toString(4)
+                val response = teamsService.create(ID.unique(), name.toString())
+                val json = response.toJson()
                 _response.postValue(Event(json))
             } catch (e: AppwriteException) {
                 _error.postValue(Event(e))
@@ -45,9 +45,8 @@ class TeamsViewModel : ViewModel() {
     fun getTeams() {
         viewModelScope.launch {
             try {
-                var response = teamsService.list()
-                var json = response.body?.string() ?: ""
-                json = JSONObject(json).toString(4)
+                val response = teamsService.list()
+                val json = response.toJson()
                 _response.postValue(Event(json))
             } catch (e: AppwriteException) {
                 _error.postValue(Event(e))
@@ -58,9 +57,8 @@ class TeamsViewModel : ViewModel() {
     fun getTeam(id: Editable?) {
         viewModelScope.launch {
             try {
-                var response = teamsService.get(id.toString())
-                var json = response.body?.string() ?: ""
-                json = JSONObject(json).toString(4)
+                val response = teamsService.get(id.toString())
+                val json = response.toJson()
                 _response.postValue(Event(json))
             } catch (e: AppwriteException) {
                 _error.postValue(Event(e))
@@ -71,9 +69,8 @@ class TeamsViewModel : ViewModel() {
     fun deleteTeam(id: Editable?) {
         viewModelScope.launch {
             try {
-                var response = teamsService.delete(id.toString())
-                var json = response.body?.string()?.ifEmpty { "{}" }
-                json = JSONObject(json).toString(4)
+                val response = teamsService.delete(id.toString())
+                val json = response.toJson().ifEmpty { "{}" }
                 _response.postValue(Event(json))
             } catch (e: AppwriteException) {
                 _error.postValue(Event(e))

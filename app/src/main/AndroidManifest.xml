@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.appwritedemoapplication">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -15,6 +14,7 @@
         android:theme="@style/Theme.AppwriteDemoApplication">
         <activity
             android:name=".MainActivity"
+            android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.AppwriteDemoApplication.NoActionBar">
             <intent-filter>
@@ -24,12 +24,16 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="io.appwrite.views.CallbackActivity" >
+        <activity
+            android:name="io.appwrite.views.CallbackActivity"
+            android:exported="true">
             <intent-filter android:label="android_web_auth">
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="appwrite-callback-6070749e6acd4"  />
+
+                <data android:scheme="appwrite-callback-[PROJECT]" />
             </intent-filter>
         </activity>
 

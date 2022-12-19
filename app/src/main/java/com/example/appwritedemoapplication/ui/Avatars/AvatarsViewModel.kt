@@ -32,7 +32,7 @@ class AvatarsViewModel : ViewModel() {
         viewModelScope.launch {
             try{
                 val response = avatarsService.getBrowser(code.toString())
-                val image = BitmapFactory.decodeStream(response.body!!.byteStream())
+                val image = BitmapFactory.decodeByteArray(response, 0, response.size)
                 _image.postValue(Event(image))
             } catch (e: AppwriteException) {
                 _error.postValue(Event(e))
@@ -44,7 +44,7 @@ class AvatarsViewModel : ViewModel() {
         viewModelScope.launch {
             try{
                 val response = avatarsService.getFlag(code.toString())
-                val image = BitmapFactory.decodeStream(response.body!!.byteStream())
+                val image = BitmapFactory.decodeByteArray(response, 0, response.size)
                 _image.postValue(Event(image))
             } catch (e: AppwriteException) {
                 _error.postValue(Event(e))
@@ -56,7 +56,7 @@ class AvatarsViewModel : ViewModel() {
         viewModelScope.launch {
             try{
                 val response = avatarsService.getCreditCard(code.toString())
-                val image = BitmapFactory.decodeStream(response.body!!.byteStream())
+                val image = BitmapFactory.decodeByteArray(response, 0, response.size)
                 _image.postValue(Event(image))
             } catch (e: AppwriteException) {
                 _error.postValue(Event(e))
@@ -68,7 +68,7 @@ class AvatarsViewModel : ViewModel() {
         viewModelScope.launch {
             try{
                 val response = avatarsService.getQR(name.toString())
-                val image = BitmapFactory.decodeStream(response.body!!.byteStream())
+                val image = BitmapFactory.decodeByteArray(response, 0, response.size)
                 _image.postValue(Event(image))
             } catch (e: AppwriteException) {
                 _error.postValue(Event(e))

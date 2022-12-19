@@ -7,9 +7,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.appwritedemoapplication.utils.Client
 import com.example.appwritedemoapplication.utils.Event
 import io.appwrite.exceptions.AppwriteException
+import io.appwrite.extensions.toJson
 import io.appwrite.services.Locale
 import kotlinx.coroutines.launch
-import org.json.JSONObject
 
 class LocalizationViewModel : ViewModel() {
 
@@ -30,9 +30,8 @@ class LocalizationViewModel : ViewModel() {
     fun getLocale() {
         viewModelScope.launch {
             try {
-                var response = localizationService.get()
-                var json = response.body?.string() ?: ""
-                json = JSONObject(json).toString(4)
+                val response = localizationService.get()
+                val json = response.toJson()
                 _response.postValue(Event(json))
             } catch (e: AppwriteException) {
                 _error.postValue(Event(e))
